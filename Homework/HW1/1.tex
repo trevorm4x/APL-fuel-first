@@ -1,0 +1,210 @@
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+
+% -------- %
+% SECTIONS %
+% -------- %
+\newcounter{problemnumber}\setcounter{problemnumber}{1}
+\titlespacing\section{0pt}{10pt}{0pt}   % Spacing between Problems
+\titlespacing\subsection{0pt}{5pt}{0pt} % Spacing between Parts
+\newcommand{\problem}[1][-1]{
+    \setcounter{partnumber}{1}
+    \ifnum#1>0
+        \setcounter{problemnumber}{#1}
+    \fi
+    \section*{Problem \arabic{problemnumber}}
+    \stepcounter{problemnumber}
+}
+
+\newcounter{partnumber}\setcounter{partnumber}{1}
+\newcommand{\ppart}[1][-1]{
+    \ifnum#1>0
+        \setcounter{partnumber}{#1}
+    \fi
+    \subsection*{Part \parttype{partnumber}}
+    \stepcounter{partnumber}
+}
+
+\newenvironment{question}{
+    \color{gray}\itshape
+    \vspace{5pt}
+    \begin{tabular}{|p{0.97\linewidth}}
+}{
+    \end{tabular}\\[5pt]
+}
+
+
+
+% ------------- %
+% HEADER/FOOTER %
+% ------------- %
+\setlength\parindent{0pt}
+\setlength\headheight{30pt}
+\headsep=0.25in
+\pagestyle{fancy}
+\lhead{\ifthenelse{\thepage=1}
+    {\textbf{Trevor Smith} \\ \textbf{\writeday}}
+}
+\chead{\ifthenelse{\thepage=1}
+    {\textbf{\huge{HOMEWORK \hwnumber}}}
+    {\textbf{\large{HOMEWORK \hwnumber}}}
+}
+\rhead{\ifthenelse{\thepage=1}
+    {\textbf{{\course}} \\ \textbf{Professor {\prof}}}
+}
+\cfoot{\thepage}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+
+
+% ---------- %
+% PARAMETERS %
+% ---------- %
+% \PARTTYPE:
+% \Alph   := "Part A, Part B,  ..."
+% \alph   := "Part a, Part b,  ..."
+% \arabic := "Part 1, Part 2,  ..."
+% \Roman  := "Part I, Part II, ..."
+\newcommand\parttype{\Roman}
+
+% \COURSE:
+\newcommand\course{PHYS 3600}
+
+% \HWNUMBER
+\newcommand\hwnumber{1}
+
+% \SEMESTER
+\newcommand\semester{Summer 1 2021}
+
+% \PROF
+\newcommand\prof{Altunkaynak}
+
+% \WRITEDAY
+% \today is date of compilation, replace if writing due date rather than write date
+\newcommand\writeday{\today}
+
+
+
+%  ------- %
+% DOCUMENT %
+% -------- %
+\begin{document}
+\problem
+\begin{question}
+	What is meant by the term bandgap of a material? Discuss the major material classification of
+conductors, insulators and semiconductors with respect to their bandgap energies.
+\end{question}
+The bandgap is the distance between the valence band, the highest energy state of filled electrons, and the conduction band, the next highest energy state after the valence band. 
+\begin{itemize}
+	\item In conductors, the valence band and the conduction band overlap, 
+		meaning essentially no energy is required to move an electron to
+		the conduction band as it is already there.
+	\item In insulators, the distance between these bands is great, and 
+		a large amount of energy is required to excite electrons to the
+		conduction band.
+	\item In insulators there is still a bandgap, however due to the 
+		structure of these materials we can introduce impurities which
+		provide postively charged 'holes' or extra electrons which may
+		move easily in the material.
+\end{itemize}
+
+\problem
+\begin{question}
+	Briefly describe a direct bandgap semiconductor and an indirect bandgap semiconductor.
+\end{question}
+In a direct bandgap semiconductor the wave vector of the conductive layer is the same as that of the valence layer. It is easier for an electron to move down to the lower energy state, and in the process it usually emits a photon.  \\
+
+In an indirect bandgap semiconductor the wave vector of the conductive layer is different than that of the valence layer. It is harder for an electron to move down to the lower energy state, and usually another impurity is introduced to the material to assist an electron doing so. In the process of dropping to a lower energy state, the electron usually emits heat. 
+
+\problem
+\begin{question}
+	In the FUEL Lab apparatus, what type of bandgap does the solar cell have?
+\end{question}
+Solar cells are generally made with direct bandgap semiconductors.
+
+\problem
+\begin{question}
+	Briefly explain the working principle of a photovoltaic (PV) solar cell? What is the value of the opencircuit voltage of a single Si PV? Does the short-circuit current of a PV depend on its area?
+\end{question}
+A semiconductor is created with a bandgap of similar energy to that of photons produced by the sun. This semiconductor is attached to a semiconductor of opposite N or P type, such that the majority charge carrier may not move through the junction between them but the minority carriers can. In order to recombine with its hole, the majority carrier, for example the electron, must move through the circuit and meet with the hole on the opposite side of the semiconductor. \\
+
+764 mV is the ideal value of the open circuit voltage of a single Si PV. The short-circuit current of a PV does depend on its area.
+
+\problem
+\begin{question}
+	What material would make a solar cell that has a much higher efficiency than silicon?
+\end{question}
+I don't understand the scope of the question, but geranium could be more efficient than Si if the sun's radiation was lower energy, around .7 eV instead of 1.3 eV. They would be lower voltage though, which would also introduce inefficiencies. Hybrid perovskites are apparently a prospective material for improving solar cells.
+
+\problem
+\begin{question}
+There is recent interest in solar research in high-efficiency and low-cost solar cells with earth friendly
+materials. In this lab you are using silicon solar cell. Do you think that silicon is a good material for
+solar cells? Explain.
+\end{question}
+Silicon is the second most abundant resource on earth. Something so easy to mine is relatively earth-friendly. 
+
+\problem
+\begin{question}
+What are the advantages and disadvantages of a CdTe solar cell?
+\end{question}
+\begin{itemize}
+	\item \textbf{Disadvantages:} Less efficient than silicon cells. Tellerium is extremely rare. Cadmium is extremely toxic, making safety a significant issue.
+	\item \textbf{Advantages:} Lower cost manufacturing. Absorbs sunlight at shorter wavelengths than silicon cells. Cadmium is also very abundant and is produced as a by-product of other metals.
+\end{itemize}
+
+\problem
+\begin{question}
+The major energy loss within a solar cell is “recombination of charge carriers” after light is absorbed.
+Briefly explain why this reduces the efficiency. 
+\end{question}
+If the charge carriers recombine before one of them is pushed into the circuit, then no current is contributed. The minor charge carrier must move through the electric field between the materials in order to recombine with the other charge carrier after it has travelled through the circuit in order for the solar cell to function.
+
+\problem
+\begin{question}
+List some methods to obtain hydrogen for industrial-size fuel cells. Discuss major advantages and
+disadvantages?
+\end{question}
+Natural Gas Reforming, Biomass Gasification, High-temp Electrolysis, Photo-biological. \\
+
+\begin{itemize}
+	\item \textbf{Advantages: } Cleaner and more efficient than natural gas or coal combustion. Quieter, and greatly reduces pollutant emissions, and provides good reliability.
+	\item \textbf{Disadvantages: } Various methods of producing Hydrogen may or may not be better for the environment, for example if natural gas is used to power electrolysis. Hydrogen is overall expensive, and is difficult to store safely due to its high flammability.
+\end{itemize}
+
+\problem
+\begin{question}
+Compare the typical efficiencies of: \\
+a. a fuel cell; \\
+b. an automobile engine; \\
+c. a natural gas electrical power plant.
+\end{question}
+\begin{enumerate}[label=\alph*.]
+	\item 40-60\% efficiency
+	\item 25\% efficiency
+	\item 42\% efficiency, if waste heat is utilized this number can be increased.
+\end{enumerate}
+
+\problem
+\begin{question}
+Suppose that 10 cm3 of hydrogen gas remains in the FUEL Lab apparatus for the weekend. If a candle
+produces 80 W of heat power, how long would a candle have to burn to release the same amount of
+combustion energy in the leftover hydrogen?
+\end{question}
+$$ 10 cm^3 \cdot \frac{1 m^3}{1e^{6} cm^3} = 1e^{-5} m^3 $$
+$$ 1e^{-5} m^3 \cdot \frac{0.090 kg}{1 m^3} = 9.0e^{-7} kg $$
+$$ 9.0 e^{-7} kg \cdot 39.4 kWh/kg = 3.54e^{-2} Wh $$
+$$ 0.00354\ watt\ hours\ / 80\ W = 0.159\ seconds $$
+
+
+
+
+
+
+\end{document}
