@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 
 def my_graph(x, y, xscale, yscale, xlabel, ylabel, name, interp):
-    fig = plt.figure(figsize=(6, 3.5))
-    ax = fig.add_axes([.15, .25, .845, .745])
+    fig = plt.figure(figsize=(7, 3.5))
+    ax = fig.add_axes([.2, .25, .795, .745])
     if interp=='linear':
         ax.plot(x, y)
     ax.scatter(x, y)
