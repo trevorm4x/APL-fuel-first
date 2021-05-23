@@ -1,0 +1,13 @@
+PRL style format
+
+
+	Install latex on Ubuntu 21.04:
+
+		sudo apt install texlive-latex-extra
+		sudo apt install texlive-publishers
+
+	You can get the pdf file by running this command below twice:
+
+		pdflatex Template-PHYS3600.tex
+
+
