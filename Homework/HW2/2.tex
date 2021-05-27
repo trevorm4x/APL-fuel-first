@@ -1,0 +1,334 @@
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{ifthen}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+
+% -------- %
+% SECTIONS %
+% -------- %
+\newcounter{problemnumber}\setcounter{problemnumber}{1}
+\titlespacing\section{0pt}{10pt}{0pt}   % Spacing between Problems
+\titlespacing\subsection{0pt}{5pt}{0pt} % Spacing between Parts
+\newcommand{\problem}[1][-1]{
+    \setcounter{partnumber}{1}
+    \ifnum#1>0
+        \setcounter{problemnumber}{#1}
+    \fi
+    \section*{Problem \arabic{problemnumber}}
+    \stepcounter{problemnumber}
+}
+
+\newcounter{partnumber}\setcounter{partnumber}{1}
+\newcommand{\ppart}[1][-1]{
+    \ifnum#1>0
+        \setcounter{partnumber}{#1}
+    \fi
+    \subsection*{Part \parttype{partnumber}}
+    \stepcounter{partnumber}
+}
+
+\newenvironment{question}{
+    \color{gray}\itshape
+    \vspace{5pt}
+    \begin{tabular}{|p{0.97\linewidth}}
+}{
+    \end{tabular}\\[5pt]
+}
+
+
+
+% ------------- %
+% HEADER/FOOTER %
+% ------------- %
+\setlength\parindent{0pt}
+\setlength\headheight{30pt}
+\headsep=0.25in
+\pagestyle{fancy}
+\lhead{\ifthenelse{\thepage=1}
+    {\textbf{Trevor Smith} \\ \textbf{\writeday}}
+}
+\chead{\ifthenelse{\thepage=1}
+    {\textbf{\huge{HOMEWORK \hwnumber}}}
+    {\textbf{\large{HOMEWORK \hwnumber}}}
+}
+\rhead{\ifthenelse{\thepage=1}
+    {\textbf{{\course}} \\ \textbf{Professor {\prof}}}
+}
+\cfoot{\thepage}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+
+
+% ---------- %
+% PARAMETERS %
+% ---------- %
+% \PARTTYPE:
+% \Alph   := "Part A, Part B,  ..."
+% \alph   := "Part a, Part b,  ..."
+% \arabic := "Part 1, Part 2,  ..."
+% \Roman  := "Part I, Part II, ..."
+\newcommand\parttype{\Roman}
+
+% \COURSE:
+\newcommand\course{PHYS 3600}
+
+% \HWNUMBER
+\newcommand\hwnumber{2}
+
+% \SEMESTER
+\newcommand\semester{Summer 1 2021}
+
+% \PROF
+\newcommand\prof{Altunkaynak}
+
+% \WRITEDAY
+% \today is date of compilation, replace if writing due date rather than write date
+\newcommand\writeday{\today}
+
+
+
+%  ------- %
+% DOCUMENT %
+% -------- %
+\begin{document}
+\problem
+\begin{question}
+	Briefly explain why the 4-wire resistance setup eliminates the errors due to contact resistances, thus accurately measuring the resistance of the silicon wafer.
+\end{question}
+
+With an ohmmeter, we are not only measuring the resistance of the silicon
+wafer but also the resistance of the wires connecting the silicon wafer to 
+the ohm meter on either side. However, using the four-wire method we are
+accurately measuring the current (because in a closed loop in series with
+a voltmeter which draws very little current), and also accurately measuring 
+the voltage (because at such low current the voltage travelling through a 
+voltmeter drops very little across resistors), resulting in an ideal 
+measurement of the wafer itself with no significant impact in I nor V of any
+resistances in the system other than the wafer. 
+
+\problem
+\begin{question}
+	When measuring the resistivity of a semiconductor, what are the crucial dimensions that must be measured when using the following techniques,
+	\begin{enumerate}[label=\alph*.]
+		\item using the rectangular geometry from the HALL Lab instructions;
+		\item using the geometry of the van der Pauw technique.
+	\end{enumerate}
+ Discuss the main difference in the techniques.
+ \end{question}
+\begin{enumerate}[label=\alph*.]
+	\item
+		In the lab we measured all three dimensions, width, length, 
+		and thickness, as well as the distance between two nodes on the
+		wafer. This was to find the resistivity using cross-sectional
+		area and length.
+	\item
+		The van der Pauw technique only requires the sheet thickness,
+		to determine the average resistivity, as it assumes the 
+		semiconductor is a sheet.
+
+\end{enumerate}
+The first method relies on a simple geometric approach, where the resistance 
+between two points on the wafer is taken as the resistivity at each small dA of
+area, divided by the cross-sectional area, multiplied by the length. The
+second approach assumes the wafer is a sheet, where the width and length are 
+much larger than the height, and accounts for any geometry of the wafer 
+by mapping it onto an infinite half-plane. The equation is then much more 
+complicated, in that latter case.
+
+\problem
+\begin{question}
+	Write down an equation for the current density (J) in terms of 
+	current (I) and cross sectional area (A), including the units.
+\end{question}
+ $$ J\ (A/m^2) = \frac{I\ (A)}{A\ (m^2)} $$
+
+\problem
+\begin{question}
+Consider a Hall bar in the shape of a rectangular semiconductor of width (w) and thickness (d) that is placed under the influence of a magnetic field (B) and electrical current (I). Derive an equation for the electric field that compensates for the charge carriers that build up on one side of the Hall bar. 
+\end{question}
+With an electric field going into the top or bottom of the semiconductor and electrons travelling along the long side of the semiconductor, a $V_H$ will be produced via $V_H = \frac{BI}{ned}$ as given in the lab. In general, $E = \frac{V}{d}$ or in this case $E = \frac{V_H}{w}$ giving finally
+$$ E = \frac{BI}{nedw} $$
+
+\newpage
+\problem
+\begin{question}
+Consider a Hall bar experiment using a germanium wafer of thickness d = 1 mm, having a current of I=1.00
+mA and a magnetic field of B = 1.00 tesla, which gives a Hall voltage of VH = 1.00 V. \\
+a. What is the value of the carrier density? \\
+b. Using a value for the mobility of electrons in Ge, what is the value of the resistivity in $\Omega$cm units?
+\end{question}
+
+\begin{enumerate}[label=\alph*.]
+	\item 
+	$$ V_H = \frac{BI}{ned} $$
+	Where: \\
+	d = 1 mm\\
+	I = 1 mA\\
+	B = 1 T\\
+	$V_H$ = 1 V\\
+	e = 1.60217662e-19 coulombs
+	$$ n = \frac{BI}{V_Hed} = 6.24e18 m^{-3} $$
+
+	\item
+	Mobility of electrons in Ge $\mu = 3900\ cm^2 V^{-1}s^{-1}$ \\
+
+	$$ \rho = \frac{1}{ne\mu} = 2.565e2\ \Omega\ cm $$
+\end{enumerate}
+
+\problem
+\begin{question}
+How does a gaussmeter work?
+\end{question}
+When a conductor is placed in a magnetic field, electrons are pushed to one side
+with a strength proportional to the strength of the magnetic field. By measuring
+the voltage on either side of the conductor, called a probe, the gaussmeter can 
+measure the strength of the magnetic field.
+
+\problem
+\begin{question}
+Explain the term Fermi energy (EF)? Where is the position of the Fermi level in 
+n-type and p-type semiconductors, relative to the conduction and valence band 
+edges?
+\end{question}
+
+The Fermi energy is the maximum amount of energy an electron in a given atom can
+have at 0 K. For p-type semiconductors, the $E_F$ is close to the valence band, and for n-type semiconductors it is close to the conduction band.
+
+\problem
+\begin{question}
+	How is a uniform magnetic field created in an electromagnet?
+\end{question}
+Magnetic fields are created by supplying a current through a conductor.
+Further, if we stack the conductor then the effect will also be compounded.
+Finally, if we want to produce a uniform magnetic field then ideally we want a
+long cylinder made out of looping wire, as the magnetic field inside of the
+coil will be uniform. However, if we want to be able to supply a uniform 
+magnetic field to something that isn't stuck inside a cylinder, we can put two large coils on either side of a test area, essentially a slice of a cylinder. This will make the magnetic field pretty uniform, especially in a small area between the coils. This is likely how the electromagnet in the lab works.
+
+\problem
+\begin{question}
+Can you replace the electromagnet with permanent magnets in this particular HALL experiment? Explain your answer.
+\end{question}
+Permanent magnets have poles, where the field lines are much closer, and would
+therefore be very difficult to make a uniform magnetic field out of. There is
+also the issue that we need to take a derivative with respect to a changing
+magnetic field in order to complete the lab, which would also be difficult to
+achieve with permanent magnets.\\
+
+The best way I can think of how to hack it together, would be to tightly tape
+a few rectangular permanent magnets together along their longest side, such that
+we're kind of imitating the shape of the electromagnet. Then put it close to 
+another one of these hacked together fixtures of permanent magnets and hope
+some of the field lines go where we want them. We could perhaps move the clumps
+further apart to get a smaller and smaller magnetic field, but these would 
+probably be pretty weak and pretty non-uniform.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

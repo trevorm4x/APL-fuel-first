@@ -13,8 +13,9 @@ def add_fit(x, y, degree, ax, xlabel, leg):
     label = ' + '.join([f'${{{np.round(coef, 3)}}} \\cdot {{{xlabel}}}^{{{degree-i}}}$' 
         for i, coef in enumerate(fits)])
     ax.plot(xf, yf, label = label, c='w')
+    return fits
 
-    plt.draw()  
+    # plt.draw()
 
     # Get the Bbox
     # bb = leg.legendPatch.get_bbox().inverse_transformed(ax.transAxes)
@@ -40,7 +41,7 @@ def my_graph(x, y, xscale, yscale, xlabel, ylabel, name, interp, fit = None):
     ax.set_ylabel(ylabel, fontdict={'fontsize': 20})
 
     if fit:
-        add_fit(x, y, fit, ax, xlabel, leg = None)
+        fits = add_fit(x, y, fit, ax, xlabel, leg = None)
     leg = ax.legend()
 
     ax.tick_params(labelsize=20,
@@ -56,3 +57,6 @@ def my_graph(x, y, xscale, yscale, xlabel, ylabel, name, interp, fit = None):
 
     plt.savefig(f"../Images/{name}.png")
     plt.show()
+
+    if fit:
+        return fits
