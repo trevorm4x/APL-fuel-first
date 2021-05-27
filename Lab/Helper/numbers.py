@@ -1,4 +1,5 @@
 from uncertainties import ufloat
+import numpy as np
 
 def get_leading_figure(unc):
     sci = str(unc).split('e')
@@ -18,7 +19,6 @@ def get_leading_figure(unc):
             te = unc
             dig = 0
             while te < 1:
-                print(te)
                 te *= 10
                 dig += 1
 
