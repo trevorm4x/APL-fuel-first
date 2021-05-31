@@ -1,6 +1,7 @@
 
 \documentclass[aps,prl,reprint]{revtex4-2}
 \usepackage{gensymb}
+\usepackage{wrapfig}
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{hyperref}
@@ -64,17 +65,46 @@ The apparatus consisted of the following.
 	\item Pre-wired circuit board
 	\item Carbide scribe
 	\item 2 soldering iron
-	\item Indium solde
-	\item Lead-tin solde
-	\item Rubber cemen
+	\item Indium solder
+	\item Lead-tin solder
+	\item Rubber cement
 	\item Fine wire
 	\item Electromagnet and power supply
-	\item Current source (dc power supply)
+	\item Current source (DC power supply)
 	\item Two multimeters (for V and I)
 \end{itemize}
 
 \section{Make Hall Sample}
 
+\subsection{Procedure}
+
+\begin{wrapfigure}{o}{.28\textwidth}
+	\begin{center}
+		\includegraphics[width=0.29\textwidth]{../Images/l2_WireDiagram.jpg}
+	\end{center}
+	\caption{\label{colors} Coloring/numbering convention of the experimental setup.}
+\end{wrapfigure}
+
+The first step of the experiment was to prepare a hall sample. This involved selecting
+and measuring a Si wafer, securing it to a circuit board prefitted with six insulated wires,
+and securing the wires to the four sides of the sample with thin wire and indium solder. 
+Before soldering, the wafer was measured, width, height, and thickness. 
+The configuration of the wires connected to the semiconductor is shown in \ref{colors}. \\
+
+Resistances between each pair of wires was measured with an Ohmeter. One wire was found to have
+a bad solder and was resoldered until all measured resistances were $< 1\ M\Omega$. \\
+
+Ohmic behavior was tested by generating a R(V) and I(V) curve. A current was applied to 
+the two end wires and varied, such that the resulting power was between -0.1 and 0.1 Watts. \\
+
+\subsection{Results and Conclusion}
+
+Results for the two-wire method of measuring resistance are shown below, where in order to 
+measure resistance between two nodes a ohmmeter is simply connected between them. This method
+is known to be inaccurate and a more precise method is used later in the experiment, however
+this verifies the test setup is correct.
+
+\begin{table}[h]
 \begin{tabular}{lr}
 \toprule
 Wire Pair &  Resistance ($\Omega$) \\
@@ -99,30 +129,91 @@ Wire Pair &  Resistance ($\Omega$) \\
 \hline
 \bottomrule
 \end{tabular}
+\caption{\label{pairs}Resistance for each combination of wires,\\ given by their numbering convention matching that in \ref{colors}.}
+\end{table}
+
+Next we probed the behavior of the semiconductor as a resistor, measuring voltage and current as
+a voltage was applied, starting at 0 and increasing until the power was just under 0.1 Watts. 
+
+% WHY DOES RESISTANCE
+
+\begin{figure}[h]
+\includegraphics[width=0.5\textwidth]{../Images/l2_a_1.png}
+\caption{\label{figA}I(V) shows different behavior closer to zero than elsewhere. }
+
+\includegraphics[width=0.5\textwidth]{../Images/l2_a_2.png}
+\caption{\label{figA}R(V) is not constant, demonstrating non-ohmic behavior.}
+\end{figure}
+
+
+In this phase of the experiment, we were able to demonstrate that the test setup had no 
+major issues and that the behavior of the semiconductor is non-ohmic. This is likely due
+to a certain voltage threshold inherent to semiconductors where resistance increases as 
+the threshold is approached. If more voltages were able to be tested, we would see a decreasing
+trend with increasing voltage after this initial peak.\\
+
+\newpage
+
+\section{The 4-Wire Method for Measuring Resistivity of a Doped Silicon Wafer}
 
 \subsection{Procedure}
 
+\begin{wrapfigure}{o}{.25\textwidth}
+	\begin{center}
+		\includegraphics[width=0.29\textwidth]{../Images/l2_4Wire.jpg}
+	\end{center}
+	\caption{\label{4wire} Four-Wire measurement configuration.}
+\end{wrapfigure}
 
-\subsection{Results}
+The 4-wire method was used to more accurately measure the resistivity of our material. In this
+method, instead of attaching an ohmmeter across the two wires, resulting in a resistivity
+that includes the wires and connections between said wires, two measurements that are 
+orthagonal are performed. An ampmeter is used to measure an applied current across the same
+two wires (which gives an accurate measure of current because the circuit is isolated along 
+that path), and a voltmeter is used to measure immediately along either side of the resistor,
+in this case across wires 2-3 and 5-6, where any resistance does not cause a meaningful 
+voltage drop.\\
 
-\begin{figure}[h]
-\includegraphics[width=0.4\textwidth]{../Images/l2_a_1.png}
-\caption{\label{figA}I(V)}
-\end{figure}
+These values for resistance were then used to calculate the material's resistivity $\rho$,
+using the earlier measurements of the wafer's dimensions. \\
 
-\begin{figure}[h]
-\includegraphics[width=0.4\textwidth]{../Images/l2_a_2.png}
-\caption{\label{figA}R(V)}
-\end{figure}
+Finally, measurements across the side wires were repeated with the ohmmeter for comparison. \\
 
+\subsection{Results and Conclusion}
 
-\newpage
+Two values for $\rho$ were attained using equation \ref{rho}, and a comparison was
+made between the two methods for measuring resistance, given in table \ref{rhotable}. 
+
 \begin{equation}
-    \mathlarger{\eta_{PV}}=P_E/P_L
-    \label{eta_PV}
+	\mathlarger{\rho=\frac{R\cdot A}{L}}
+    \label{rho}
 \end{equation}
 
-\subsection{Conclusions}
+\begin{table}[h!]
+\renewcommand{\arraystretch}{1.45}
+\setlength{\tabcolsep}{10pt}
+\begin{tabular}{lrrr}
+\toprule
+Path &  4-Wire R ($\Omega$) &  2-Wire R ($\Omega$) &       $\rho\ (m\Omega)$ \\
+\midrule
+2-3 &         147 &     20200.0 &  0.079131 \\
+5-6 &         235 &    213600.0 &  0.102832 \\
+\bottomrule
+\end{tabular}
+\end{table}
+There is indeed a substantial difference between the two measuring methods in this case,
+three orders of magnitude. Additionally, the two 4-wire measurements were different by about 2x,
+but the 2-wire measurements were different by an order of magnitude. Thus, the relative variance
+of the 2-wire method is much higher, implying that it has both worse accuracy and precision.\\
+
+This is of course due mostly to the quality of the solder connections between the wires and the
+semiconductor, meaning that the connections on one side were probably just worse than the other 
+side.\\
+
+Because two measurements of $\rho$ were calculated, which are both measuring the same property
+of the same material, they were taken as a small distribution, with the mean as the measured
+value and the uncertainty the standard deviation. Our measured value is therefore
+$9\ \pm\ 2\ cm\Omega$.
 
 \section{Summary}
 
@@ -131,8 +222,8 @@ Wire Pair &  Resistance ($\Omega$) \\
 \begin{table}[h]
 \renewcommand{\arraystretch}{1.35}
 \setlength{\tabcolsep}{10pt}
-\caption{\label{}Measured and accepted values of the speed of light and refractive index of various materials.}
-\begin{tabular}{|c|c|c|c|c|}
+\caption{\label{rhotable}Measured and accepted values of the speed of light and refractive index of various materials.}
+\begin{tabular}{ccccc}
 %\hline
 \toprule
 Property & Measured Value &  Accepted Value & Refs. &   Deviation \\
