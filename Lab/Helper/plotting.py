@@ -5,6 +5,8 @@ import pandas as pd
 from Helper.numbers import get_leading_figure
 
 def add_fit(x, y, degree, ax, xlabel, leg):
+    if xlabel.startswith('$'):
+        xlabel = xlabel[1:-1]
     fits = np.polyfit(x.values.astype(float), y.values.astype(float), degree)
     xf = np.linspace(min(x), max(x), 1001)
     yf = sum([
