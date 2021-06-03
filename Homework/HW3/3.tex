@@ -1,0 +1,222 @@
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+
+% -------- %
+% SECTIONS %
+% -------- %
+\newcounter{problemnumber}\setcounter{problemnumber}{1}
+\titlespacing\section{0pt}{10pt}{0pt}   % Spacing between Problems
+\titlespacing\subsection{0pt}{5pt}{0pt} % Spacing between Parts
+\newcommand{\problem}[1][-1]{
+    \setcounter{partnumber}{1}
+    \ifnum#1>0
+        \setcounter{problemnumber}{#1}
+    \fi
+    \section*{Problem \arabic{problemnumber}}
+    \stepcounter{problemnumber}
+}
+
+\newcounter{partnumber}\setcounter{partnumber}{1}
+\newcommand{\ppart}[1][-1]{
+    \ifnum#1>0
+        \setcounter{partnumber}{#1}
+    \fi
+    \subsection*{Part \parttype{partnumber}}
+    \stepcounter{partnumber}
+}
+
+\newenvironment{question}{
+    \color{gray}\itshape
+    \vspace{5pt}
+    \begin{tabular}{|p{0.97\linewidth}}
+}{
+    \end{tabular}\\[5pt]
+}
+
+
+
+% ------------- %
+% HEADER/FOOTER %
+% ------------- %
+\setlength\parindent{0pt}
+\setlength\headheight{30pt}
+\headsep=0.25in
+\pagestyle{fancy}
+\lhead{\ifthenelse{\thepage=1}
+    {\textbf{Trevor Smith} \\ \textbf{\writeday}}
+}
+\chead{\ifthenelse{\thepage=1}
+    {\textbf{\huge{HOMEWORK \hwnumber}}}
+    {\textbf{\large{HOMEWORK \hwnumber}}}
+}
+\rhead{\ifthenelse{\thepage=1}
+    {\textbf{{\course}} \\ \textbf{Professor {\prof}}}
+}
+\cfoot{\thepage}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+
+
+% ---------- %
+% PARAMETERS %
+% ---------- %
+% \PARTTYPE:
+% \Alph   := "Part A, Part B,  ..."
+% \alph   := "Part a, Part b,  ..."
+% \arabic := "Part 1, Part 2,  ..."
+% \Roman  := "Part I, Part II, ..."
+\newcommand\parttype{\Roman}
+
+% \COURSE:
+\newcommand\course{PHYS 3600}
+
+% \HWNUMBER
+\newcommand\hwnumber{3}
+
+% \SEMESTER
+\newcommand\semester{Summer 1 2021}
+
+% \PROF
+\newcommand\prof{Altunkaynak}
+
+% \WRITEDAY
+% \today is date of compilation, replace if writing due date rather than write date
+\newcommand\writeday{\today}
+
+
+
+%  ------- %
+% DOCUMENT %
+% -------- %
+\begin{document}
+\problem
+\begin{question}
+	Compare and contrast plasma emission and flourescence.
+\end{question}
+Plasma emission is caused by heating a sample to high temperatures causing 
+excitation, where flourescence is caused by more direct excitation and can be
+produced using light. In both cases the light produced is energy being ejected
+from an electron transtitioning back to a lower energy state. Plasma emission
+produces very tight bands. We interact with both, with flourescent bulbs and
+neon lighting both using the different methods.
+
+\problem
+\begin{question}
+	Describe the ruby crystal structure and its elements. Which element is responsible for the fluorescence and what does it replace?
+\end{question}
+Ruby crystal is a form of doped corundum, which is $Al_2O_3$ in a 
+hexagonal-rhombohedral repeating lattic1e where every oxygen atom is connected
+to 6 other oxygen atoms. The doping moleule chromium replaces
+about 1 in 100 aluminum molecules, and is responsible for the flourescence of
+the ruby. This is caused by three unpaired 3d electrons of $Cr^{3+}$ compared to
+$Al^{3+}$ upsetting the perfect stability of the corundum crystal structure.
+
+\problem
+\begin{question}
+	Briefly explain population inversion in a lasing medium. What does the lifetime of an energy level
+have to do with it?
+\end{question}
+Population inversion what happens when most atoms in a material are in a higher
+energy state instead of the natural lower energy state. 
+The ability to generate a population inversion on a sample is dependent on the
+lifetime of the energy levels available within the material. Typically in a 
+laser the atoms are excited to a short-lived higher energy state which decays
+quickly into a meta-stable energy state. Molecules in the meta-stable energy
+state are then able to become the new dominant population, as we can 
+continually pump in excitation light to bring the molecules to the higher-energy
+state.
+
+\problem
+\begin{question}
+	Briefly describe the differences between spontaneous emission and stimulated emission.
+\end{question}
+Most briefly, spontaneous emission happens spontaneously and stimulated emission
+is stimulated. Importantly, stimulated emission is stimulated by another photon
+matching the energy level difference, and results in the production of a photon
+of the exact same wavelength, direction, and phase, contrasted with spontaneous emission
+which is fully random in phase and direction.
+
+\problem
+\begin{question}
+	What percentage of visible light is passed through a 3 mm thick window made of fused silica (SiO2)? \\
+What percentage of light is passed through a 0.1 mm thick clear Mylar (polyethylene) plastic sheet? \\
+Which transmits more light? Assume absorption is zero. Compute and explain.
+\end{question}
+$$ n_{silica} = 1.4585 $$
+$$ n_{polyethelene} = 1.500 $$
+$$ R = \left(\frac{1-n}{1+n}\right)^2 $$
+$$ R_{silica} = 0.03478 $$
+$$ R_{polyethelene} = 0.04 $$
+When $\alpha$ = 0,
+$$ T = (1-R)^2 $$
+$$ T_{silica} = 93.2 \% $$
+$$ T_{polyethelene} = 92.2 \% $$
+Silica transmits more light, as we can see by comparing T. This makes sense 
+given the larger difference in n going from vaccuum to polyethelene than 
+vaccuum to silica.
+
+
+\problem
+\begin{question}
+	In designing a laser diode (LD), what elements are required to produce blue light?
+\end{question}
+Gallium nitride is required to produce blue light.
+
+\problem
+\begin{question}
+	Why do we need a green laster for the lab?
+\end{question}
+If we want to stimulate flourescence, it's much harder to use white light since
+it is made up of a scattering of frequencies, and we may not be able to produce
+a high enough energy light for the specific absorption we're looking for. 
+A green laser does have a high enough energy to excite R-line flourescence.
+
+\problem
+\begin{question}
+	Can you replace the green laser with a red or blue laser to excite the R-line fluorescence?
+\end{question}
+One explanation for why a red laser couldn't be used is that rubies, being red,
+do not absorb red light. Another explanation is that for flourescence to occur, 
+we must hit the sample with higher energy than will be emitted. Since the
+atom will excite to a short-lived state, then decay to a meta-stable state
+from which it will produce a photon of wavelength in the red light range,
+if the original photon exciting the atom was also red light that would violate
+conservation of energy as the atom lost more energy than it gained, due to the 
+extra meta-stable state. \\
+The energy of a photon is given by $hc/\lambda$, where hc is planck's constant * the speed of light in eV*nm. The lower the wavelength, therefore, the higher
+the energy of the photon. Blue light is on the lower-wavelength end of the spectrum, as it is close to ultra-violet. This means that a blue laser would have 
+higher energy light than a green laser, and could be used for this experiment.
+
+\problem
+\begin{question}
+	Depending on the relative positions of a lens and an object, the image produced by a convex lens
+could be real, imaginary or no image. What type of image is produced by the following: \\
+a. the object is further than the focal length; \\
+b. the object is at the focal length; \\
+c. the object is less than the focal distance.
+\end{question}
+a. Real image
+b. No image
+c. Imaginary image
+
+\problem
+\begin{question}
+	Briefly describe how a spectrometer works.
+\end{question}
+Light is passed through a narrow slit, serving as a short-pass filter.
+The light is then collimated and passed through a grating. This grating 
+disperses the light at different angles depending on its wavelength, like a 
+prism. These components are then focused again onto a detector.
+
+
+
+
+
+
+
+\end{document}

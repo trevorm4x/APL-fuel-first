@@ -31,12 +31,12 @@ def get_leading_figure(unc):
                 dig -= 1
     return dig
 
-def print_unc(val, unc = []):
+def print_unc(val, unc = [], bprint = True):
     if isinstance(unc, list):
         val, unc = val.n, val.s
     dig = get_leading_figure(unc)
-
-    print("{:.{}f} +- {:.{}f}".format(val, dig, unc, dig))
+    if bprint:
+        print("{:.{}f} +- {:.{}f}".format(val, dig, unc, dig))
     return np.round(val, dig), np.round(unc, dig), dig
 
 def fft_filter(a, freq=.007):
@@ -51,8 +51,9 @@ def moving_avg_filter(a, bucket = 30):
              for i in range(len(a))]
     return newby
 
-def peak(a, n_peaks, prominence=1000, height=1):
-    peaks, peak_dict = find_peaks(a, prominence=prominence, height=height)
+def peak(a, n_peaks, prominence=1000, height=1, indeces=[]):
+    peaks, peak_dict = find_peaks(
+            a, prominence=prominence, height=height)
     heights = peak_dict['peak_heights'].tolist()
     peaks = peaks.tolist()
     inds = []
@@ -62,6 +63,10 @@ def peak(a, n_peaks, prominence=1000, height=1):
             peak_num = heights.index(max(heights))
             inds.append(peaks.pop(peak_num))
             bigheights.append(heights.pop(peak_num))
+
+    if len(indeces) == len(a):
+        sample_width = indeces[1] - indeces[0]
+        inds = [i * sample_width + indeces[0] for i in inds]
     return inds, bigheights
 
 def halfmax(a, peak_inds):
