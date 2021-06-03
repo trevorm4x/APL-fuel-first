@@ -51,9 +51,9 @@ def moving_avg_filter(a, bucket = 30):
              for i in range(len(a))]
     return newby
 
-def peak(a, n_peaks, prominence=1000, height=1, indeces=[]):
+def peak(a, n_peaks, prominence=1000, height=1, threshold=100, indeces=[]):
     peaks, peak_dict = find_peaks(
-            a, prominence=prominence, height=height)
+            a, prominence=prominence, height=height, threshold=threshold)
     heights = peak_dict['peak_heights'].tolist()
     peaks = peaks.tolist()
     inds = []
@@ -66,8 +66,11 @@ def peak(a, n_peaks, prominence=1000, height=1, indeces=[]):
 
     if len(indeces) == len(a):
         sample_width = indeces[1] - indeces[0]
-        inds = [i * sample_width + indeces[0] for i in inds]
-    return inds, bigheights
+        # inds = [i * sample_width + indeces[0] for i in inds]
+        lengths = indeces[inds]
+    else:
+        lengths = inds
+    return lengths, bigheights, inds
 
 def halfmax(a, peak_inds):
     return peak_widths(a, peak_inds, .5)

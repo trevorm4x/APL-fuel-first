@@ -62,3 +62,16 @@ def my_graph(x, y, xscale, yscale, xlabel, ylabel, name, interp, fit = None):
 
     if fit:
         return fits
+
+def style(fig):
+    """ 
+    help style bokeh plots 
+    """
+    fig.axis.axis_label_text_font_size = "24pt"
+    fig.axis.major_label_text_font_size = '20pt'
+    fig.legend.label_text_font_size = '18pt'
+    fig.toolbar.logo = None
+    fig.toolbar_location = None
+    fig.xgrid.visible = False
+    fig.ygrid.visible = False
+    return fig
