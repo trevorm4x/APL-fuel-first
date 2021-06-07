@@ -1,4 +1,4 @@
-￼from dataclasses import dataclass, asdict, field, fields
+from dataclasses import dataclass, asdict, field, fields
 
 from uncertainties import ufloat
 
@@ -38,12 +38,12 @@ class Unit:
 
     def __mul__(self, other):
         newscale = SI_unit_dict[self.e + other.e]
-        newunit = self.unit.split('*') + other.unit.split('*')
+        newunit = self.unit + other.unit
 
-        return Unit(newscale, '*'.join(newunit)
+        return Unit(newscale, '*'.join(newunit))
 
 
-@ dataclass(eq=False)
+@dataclass(eq=False)
 class Measurement:
     value: float=field()
     unc: float=field()
@@ -55,7 +55,7 @@ class Measurement:
 
     def __ufloat__(self):
         return ufloat(
-            self.value, self.unc) *
+            self.value, self.unc) * \
             10**inv_SI_unit_dict[self.unit.scale]
 
     def __interval__(self):

@@ -45,7 +45,14 @@
 \date{\today}
 
 \begin{abstract}
-	Nothing is here
+	A gren laser diodde was used to excite a ruby crystal and examine its properties
+	of transmission, absorption, and fluorescence. The transmission of photons with
+	a wavelength of 700 nm was measured at 0.91 $\pm$ 0.05, which is higher than
+	the expected value of 0.851. The absorption length for this sample was measured
+	at 4.9 $\pm$ 0.1 mm. The R-line emission was measured with a wavelength of 
+	693.2 $\pm$ 0.2 nm, which is slightly lower than the accepted value of 694 nm.
+	The fluorescence decay constant $\tau$ was measured at 3.52 $\pm$ 0.04 ms, which
+	agrees exactly with the expected value of 3.5 $\pm$ 0.5 ms.
 \end{abstract}
 
 
@@ -135,8 +142,9 @@ relevant if any of the peaks sneak into any of the the other data they shouldn't
 in.\\
 
 \begin{figure}[h]
-\includegraphics[width=0.4\textwidth]{../Images/l3_A_bkg.png}
-\caption{\label{bkg}}
+	\includegraphics[width=0.4\textwidth]{../Images/l3_A_bkg.png}
+	\caption{\label{bkg} Background light that reaches the test setup
+	even while it is not pointed at the room.}
 \end{figure}
 
 The spectrometer measurement of the green laser was indeed found to be just over 533 nm,
@@ -146,8 +154,9 @@ lab involving the spectrometer, so all reported graphs and numbers have been cor
 by this constant amount of 1.094 nm.
 
 \begin{figure}[h]
-\includegraphics[width=0.4\textwidth]{../Images/l3_A_green.png}
-\caption{\label{green}}
+	\includegraphics[width=0.4\textwidth]{../Images/l3_A_green.png}
+	\caption{\label{green} The calibration of the spectrogram, performed with
+	a green laser of known wavelength.}
 \end{figure}
 
 Finally the lab light spectrum was analyzed, and is given in fig.\ref{lablight}.
@@ -167,8 +176,9 @@ of white light by producing just a few different color lights, with a few differ
 materials. \\
 
 \begin{figure}[h]
-\includegraphics[width=0.4\textwidth]{../Images/l3_A_lablight.png}
-\caption{\label{lablight}}
+	\includegraphics[width=0.4\textwidth]{../Images/l3_A_lablight.png}
+	\caption{\label{lablight} The spectral signature of the laboratory, especially
+	the fluorescent lighting.}
 \end{figure}
 
 
@@ -206,8 +216,9 @@ range, and the wavelengths measured were corrected by the above specified amount
 The background noise was subtracted from each spectrum, and both are plotted in fig. \ref{ruby-no-ruby}.
 
 \begin{figure}[h]
-\includegraphics[width=0.4\textwidth]{../Images/l3_B_a.png}
-\caption{\label{ruby-no-ruby}}
+	\includegraphics[width=0.4\textwidth]{../Images/l3_B_a.png}
+	\caption{\label{ruby-no-ruby} A comparison of the spectral signature of the 
+	white light before and after passing through the ruby crystal.}
 \end{figure}
 
 Eq. \ref{alpha} was used to calculate various facets of the expected and measured
@@ -223,18 +234,26 @@ of the signal that will be reflected due to the mismatch in n. \\
     \label{alpha}
 \end{equation}
 
+Eq. \ref{alpha} relates the intensity of light traveling through air I to the intensity
+of light traveling through a material $I_0$, a reflection coefficient R, the absorption
+of the material $\alpha$, and the length of the material L.
+
 \begin{figure}[h]
-\includegraphics[width=0.4\textwidth]{../Images/l3_B_b.png}
-\caption{\label{transmission_plot}}
+	\includegraphics[width=0.4\textwidth]{../Images/l3_B_b.png}
+	\caption{\label{transmission_plot} The transmission rate through a ruby sample.}
 \end{figure}
 
+
 The transmission spectrum, given by eq. \ref{transmission}, was computed and plotted in
-\ref{transmission_plot}.
+\ref{transmission_plot}
 
 \begin{equation}
 	\mathlarger{T(\lambda) = I(\lambda)/I_0(\lambda)}
     \label{transmission}
 \end{equation}
+
+where $\lambda$ is the wavelength of light, and $I$ and $I_0$ are functions of
+lambda that relate to the medium.
 
 The spectrum of the absorption coefficient as a function of wavelength, 
 $\alpha(\lambda)$ was computed via eq. \ref{alpha2}, which was derived from eq. 
@@ -242,12 +261,13 @@ $\alpha(\lambda)$ was computed via eq. \ref{alpha2}, which was derived from eq.
 
 \begin{equation}
 	\mathlarger{\alpha = \frac{-1}{L} \cdot ln\left(\frac{T}{(1-R)^2}\right)}
-	\citation{\label{alpha2}, derived from \ref{alpha}}
+	\label{alpha2}
 \end{equation}
+This equation is derived from \ref{alpha} and has the same constants.
 
 \begin{figure}[h]
-\includegraphics[width=0.4\textwidth]{../Images/l3_B_c.png}
-\caption{\label{absorption}}
+	\includegraphics[width=0.4\textwidth]{../Images/l3_B_c.png}
+	\caption{\label{absorption} The absorption of a ruby crystal, $\alpha(\lambda)$}
 \end{figure}
 
 The absorption peaks are centered at 400 and 550 nm, which correspond to the wavelengths
@@ -271,10 +291,154 @@ Peak &  Wavelength (nm) &  Width (nm) &          alpha ($m^{-1}$) &        1/alp
 \caption{\label{abs}}
 \end{table}
 
-\newpage
-\subsection{Conclusions}
+\section{Ruby Fluorescence Spectrum}
+
+\subsection{Procedure}
+The optical setup was arranged to measure the emission spectrum of the ruby spectrum, 
+excited by a green diode laser, shown in Fig. \ref{C}. All optical components were 
+aligned by their height above the breadboard, and the 600 $\mu m$ fiberoptic cable
+was mounted pointing toward the ruby crystal. The beam's intensity was reduced by
+a neutral density filter, and a convex collection lens was used to focus any
+output from the ruby towards the optical fiber. The lens, of focal length 25 mm, was
+placed such that the image of the ruby would hit the FO with a magnification of 1,
+which requires that both objects be set an equal distance from the lens. \\
+
+\begin{equation}
+	\mathlarger{\frac{1}{f} = \frac{1}{o} + \frac{1}{i}}
+	\label{lens}
+\end{equation}
+
+Using the thin lens formula, where the focal length $f$ is related to object distance 
+and image distance, given by \ref{lens}, the optimal distances were 
+calculated to be 50 mm away from the lens.\\
+
+\begin{figure}[h]
+	\includegraphics[width=0.4\textwidth]{../Images/l3_C.png}
+	\caption{\label{C} Test setup}
+\end{figure}
+
+The setup was aligned by replacing the spectrogram at the opposite end
+of the collection FO cable with a white light source, and aligning the image of the
+light, as well as the green laser, directly on the ruby crystal. By replacing the 
+input with an output, we can be sure that once the spectrogram is hooked up, it is
+perfectly aligned to take data from the ruby crystal. After this alignment,
+the spectrogram was hooked up to the FO cable and the black cloth was placed over
+the apparatus. 
+
+\subsection{Results}
+
+The measured emission spectrum is shown in \ref{emission}. The most prominent peak,
+the R-line emission of the crystal, is located at $693.2\ \pm\ 0.4\ nm$. This 
+uncertainty was calculated based on 2x the measurement precision of the spectrometer.
+This is given considering that, while the low-pass filter is effective at removing the 
+most significant source of noise, high-frequency eletronic noise, it is still true
+that different filtering techniques will yield different values, and could reasonably
+correspond to a range of 5 ``markings" on the measurement device.
+A brief exploration of this filtering is shown in the appendix.
+This value is significant because it corresponds to the difference between the energy
+level of the metastable state available in ruby crystals, and the ground state, and
+with a theoretical value of 694 nm our measurement is slightly below the accepted
+value. The other peak at 532 nm is due to the green laser reflecting off the surface
+of the ruby.
+
+\begin{figure}[h]
+	\includegraphics[width=0.4\textwidth]{../Images/l3_D_a.png}
+	\caption{\label{emission} Emission of a ruby sample excited by a green laser 
+	light.}
+\end{figure}
+
+\section{Fluorescence Lifetime of Ruby R-line}
+
+\subsection{Procedure}
+The optical setup was adjusted to measure the flourescence of the ruby crystal in
+the time-domain. A function generator was used to produce 100 ms long laser burst,
+and this signal was used to trigger an oscilloscope on the edge of the square wave. The
+photodiode (PD) was connected to the FO and used to measure the fluorescence of the 
+ruby and produce a signal on channel 2 of the oscilloscope. A filter was placed 
+between the lens and the FO to remove the green laser light reflected from the ruby,
+as discussed in the previous section. 
+
+\subsection{Results}
+
+\begin{figure}[h]
+	\includegraphics[width=0.4\textwidth]{../Images/l3_E_Oscilloscope.png}
+	\caption{\label{scope}}
+\end{figure}
+
+Three complete periods of the PD output were captured and recorded, with the raw
+data presented in fig. \ref{scope}. A inverse exponential fit (with offsets that are
+not shown) was applied to each curve, beginning at the moment the laser was powered
+off. After aligning the time axis such that 0 s is the moment a given laser burst ends,
+and 0 mV is the asyptote of the curve, the equation is given by eq. \ref{N_0}, with
+the caveat that in our measurements $N_0$ is not measured, rather a signal in mV.
+
+\begin{equation}
+	\mathlarger{N(t) = N_0e^{-t/\tau}}
+	\label{N_0}
+\end{equation}
+This equation relates the number of electrons in an excited state, N, to the amount
+of electrons originally in the excited state $N_0$ as that number decays through time
+with a decay constant $\tau$. \\
+
+The fits are shown in \ref{fits}, along with the equation given by the mean of each
+variable. The lifetime of R-line ruby fluorescence, $\tau$, was calcualted at 3.52 $\pm$
+0.04 ms, with the uncertainty given by the standard deviation across the three fits. 
+This value overlaps with the accepted value of 3.5 $\pm$ .4 ms.
+
+\begin{widetext}
+\begin{center}
+\begin{figure}[t]
+	\includegraphics[width=0.8\textwidth]{../Images/l3_E.png}
+	\caption{\label{fits} Three observations of the decay time of a fluorescent
+	ruby sample following short laser pulses, with the average fit equation given.}
+\end{figure}
+\end{center}
+\end{widetext}
+
 
 \section{Summary}
+The absorption and fluorescence of a ruby crystal was analyzed, with values for 
+transmission at 700 nm, peak absorption length, R-line wavelength, and fluorescence 
+lifetime calculated.\\
+
+In the first phase of the lab, a white light source was used to produce a continuous 
+curve of transmission and absorption as a function of wavelength. Using the accepted 
+value for n, the index of refraction for a ruby crystal, an accepted value for the
+transmission at 700 nm, assuming zero absorption, was calculated to be 0.851. The 
+experimental value attained for this transmission was 0.91 $\pm$ 0.05, which is high. 
+This error may stem from the shape of the white light, which was not well optimized 
+towards the collection zone, or on the ruby itself. \\
+
+An absorption curve was derived from the transmissionc curve, and the main peaks were
+analyzed. While it is difficult to find an accepted value for the peak absorption
+and its corresponding absorption length, $1/\alpha$, these numbers do square with
+the simple observation that rubies are red, and therefore absorb the wavelengths of 
+light that correspond to colors other than red. There were definitely issues with
+this test setup, given the lowest values for absorption were below zero which is
+not possible. It is likely that some white light was still hitting the FO input even 
+after the ruby was inserted, skewing the results as though more light was getting 
+through than should have been able to. It may also be that this particular sample
+had a lower index of refraction than the accepted value, which would result in less
+light being reflected and would also explain our observations.\\
+
+In the next phase of the lab fluorescence was measured for its R-line wavelength and
+lifetime. The measured value was 693.2 $\pm$ 0.4 nm, reasonably close to the expected
+694 nm. Some of this error may be simply due to electronic noise. Interestingly, 
+calibration of the spectrometer using green laser light yielded a correction of an 
+about 1 nm subtraction. It may have been that this calibration was done incorrectly, as
+the green light peak did not have a sharp peak, and that the measured value would be 
+correct if not for miscalibration. \\
+
+The lifetime of ruby fluorescence was measured by performing several inverse exponential
+fits on the ruby emissions after short laser pulses. While the data was quite noisy
+at this granularity, the fit parameters were very consistent and accurate. At 3.52 $\pm$
+0.04 ms they overlapped perfectly with the accepted value of 3.5 nm. This more precise
+measurement may be the result of more precise controls being possible with this setup,
+and it also may be that the oscilloscope, measuring a net voltage from a photodiode,
+is a more accurate measurement device than a spectrogram, which relies on measuring
+very many different wavelengths and relies on precisely controlling the incoming beam.
+
+
 
 
 \begin{widetext}
@@ -282,18 +446,20 @@ Peak &  Wavelength (nm) &  Width (nm) &          alpha ($m^{-1}$) &        1/alp
 \begin{table}[h]
 \renewcommand{\arraystretch}{1.35}
 \setlength{\tabcolsep}{10pt}
-\caption{\label{}Measured and accepted values of the speed of light and refractive index of various materials.}
+\caption{\label{summary}Measured and accepted values of various fluorescent properties of a ruby crystal.}
 \begin{tabular}{|c|c|c|c|c|}
 %\hline
 \toprule
-Apparatus &  $\eta$ (\%) & Accepted $\eta$ value & Refs. & Deviation \\
+Property & Measured & Accepted & Ref. & Deviation \\
 \colrule
-Photovoltaic Cell &  $15 \pm 2$ & $17 \pm 2.5$ & \cite{Solar Cell} & $0\sigma$  \\
+700nm Transmission & 0.91$\pm$0.05 & 0.851 &  \cite{ruby_refraction} & 2$\sigma$ \\
 \colrule
-Elecrolyzer &  $87 \pm 6$ & 80 & \cite{Electrolyzer} & $2\sigma$  \\
+Peak Absorption Length & 4.9 $\pm$0.1 mm  & - & - & -   \\
 \colrule
-Hydrogen Fuel Cell &  $49 \pm 5$ & 60 & \cite{Fuel Cell} & $-3\sigma$  \\
+R-Line Wavelength & 693.2 $\pm$ 0.4 nm  & 694 nm & \cite{r-line} & -2$\sigma$ \\
 %\hline
+\colrule
+Lifetime \tau & 3.52 $\pm$ 0.04 ms & 3.5 $\pm$ 0.5 ms & \cite{lifetime} & 0\sigma  \\
 \botrule
 \end{tabular}
 \end{table}
@@ -301,33 +467,27 @@ Hydrogen Fuel Cell &  $49 \pm 5$ & 60 & \cite{Fuel Cell} & $-3\sigma$  \\
 \end{widetext}
 
 
-
-
-
+%================================================
 \begin{thebibliography}{9}
 %
-\bibitem{HHV} 
-Wikipedia, Heat of Combustion: \\
-\href{https://en.wikipedia.org/wiki/Heat_of_combustion}{https://www.wikepedia.com}
+\bibitem{VisibleSpectrum} 
+ThoughtCo, Unserstanding Visible Light \\
+\href{thoughtco.com}{https://www.thoughtco.com/understand-the-visible-spectrum-608329}
 %
-\bibitem{Solar Cell} 
-Energysage, Most Efficient Solar Panels\\
-\href{https://news.energysage.com/what-are-the-most-efficient-solar-panels-on-the-market/#:~:text=How%20efficient%20are%20solar%20panels,are%20not%20above%2020%25%20efficiency.}{https://www.energysage.com/}
-%
-\bibitem{Electrolyzer} 
-Carbon Commentary, Hydrogen made by Electolysis\\
-\href{https://www.carboncommentary.com/blog/2017/7/5/hydrogen-made-by-the-electrolysis-of-water-is-now-cost-competitive-and-gives-us-another-building-block-for-the-low-carbon-economy}{https://www.carboncommentary.com}
-%
+\bibitem{ruby_refraction} 
+Gem Society, Table of Refractive Indices and Double Refraction of Selected Gems \\
+\href{gemsociety.org}{https://www.gemsociety.org/article/table-refractive-index-double-refraction-gems/}
 
-%
-\bibitem{Fuel Cell} 
-Energy.gov, Fuel Cell Fact Sheet\\
-\href{https://www.energy.gov/sites/prod/files/2015/11/f27/fcto_fuel_cells_fact_sheet.pdf}{https://www.energy.gov}
+\bibitem{r-line} 
+Physics Open Lab, Ruby Crystal Fluorescence \\
+\href{physicsopenlab.org}{https://physicsopenlab.org/2020/06/15/ruby-crystal-fluorescence/}
 
+
+\bibitem{lifetime} 
+SpringerLink, Ruby Crystal for Demonstrating Time- and Frequency-Domain Methods of Fluorescence Lifetime Measurements \\
+\href{SpringerLink.com}{https://link.springer.com/article/10.1007/s10895-006-0123-7}
+%
 \end{thebibliography}
 
 
 \end{document}
-%
-% ****** End of file apstemplate.tex ******
-
