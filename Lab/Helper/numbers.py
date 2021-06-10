@@ -75,3 +75,36 @@ def peak(a, n_peaks, prominence=1000, height=1, threshold=100, indeces=[]):
 def halfmax(a, peak_inds):
     return peak_widths(a, peak_inds, .5)
 
+def rising_edge(sig, times, first = False):
+
+    if not first:
+        max_ind, max_val = sig.idxmax(), sig.max()
+    if first:
+        inds, heights, _ = peak(sig, 177, 0, 0, 0)
+        firstloc = inds.index(min(inds))
+        max_ind, max_val = inds[firstloc], heights[firstloc]
+    this_ind, this_val = max_ind, max_val
+    next_ind = max_ind - 2
+    next_val = sig[next_ind]
+
+    while this_val - next_val > 0:
+        this_ind = next_ind
+        this_val = next_val
+        next_ind -= 1
+        if next_ind == -1:
+            break
+        next_val = sig[next_ind]
+
+    start_ind = this_ind
+    end_ind = max_ind
+
+    rising_slice = sig[start_ind:end_ind]
+    ran = rising_slice.tolist()[-1] - rising_slice.tolist()[0]
+    ten = rising_slice.tolist()[0] + .1*ran
+    ninety = rising_slice.tolist()[-1] - .1*ran
+    ten_ind = rising_slice[rising_slice < ten].index[-1]
+    ninety_ind = rising_slice[rising_slice < ninety].index[-1]
+    rising_time = times[ninety_ind] - times[ten_ind]
+    print("10-90 time", rising_time)
+
+    return [[start_ind, end_ind], [ten_ind, ninety_ind]]
