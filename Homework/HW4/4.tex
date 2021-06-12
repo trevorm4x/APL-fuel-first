@@ -1,0 +1,190 @@
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+
+% -------- %
+% SECTIONS %
+% -------- %
+\newcounter{problemnumber}\setcounter{problemnumber}{1}
+\titlespacing\section{0pt}{10pt}{0pt}   % Spacing between Problems
+\titlespacing\subsection{0pt}{5pt}{0pt} % Spacing between Parts
+\newcommand{\problem}[1][-1]{
+    \setcounter{partnumber}{1}
+    \ifnum#1>0
+        \setcounter{problemnumber}{#1}
+    \fi
+    \section*{Problem \arabic{problemnumber}}
+    \stepcounter{problemnumber}
+}
+
+\newcounter{partnumber}\setcounter{partnumber}{1}
+\newcommand{\ppart}[1][-1]{
+    \ifnum#1>0
+        \setcounter{partnumber}{#1}
+    \fi
+    \subsection*{Part \parttype{partnumber}}
+    \stepcounter{partnumber}
+}
+
+\newenvironment{question}{
+    \color{gray}\itshape
+    \vspace{5pt}
+    \begin{tabular}{|p{0.97\linewidth}}
+}{
+    \end{tabular}\\[5pt]
+}
+
+
+
+% ------------- %
+% HEADER/FOOTER %
+% ------------- %
+\setlength\parindent{0pt}
+\setlength\headheight{30pt}
+\headsep=0.25in
+\pagestyle{fancy}
+\lhead{\ifthenelse{\thepage=1}
+    {\textbf{Trevor Smith} \\ \textbf{\writeday}}
+}
+\chead{\ifthenelse{\thepage=1}
+    {\textbf{\huge{HOMEWORK \hwnumber}}}
+    {\textbf{\large{HOMEWORK \hwnumber}}}
+}
+\rhead{\ifthenelse{\thepage=1}
+    {\textbf{{\course}} \\ \textbf{Professor {\prof}}}
+}
+\cfoot{\thepage}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+
+
+% ---------- %
+% PARAMETERS %
+% ---------- %
+% \PARTTYPE:
+% \Alph   := "Part A, Part B,  ..."
+% \alph   := "Part a, Part b,  ..."
+% \arabic := "Part 1, Part 2,  ..."
+% \Roman  := "Part I, Part II, ..."
+\newcommand\parttype{\Roman}
+
+% \COURSE:
+\newcommand\course{PHYS 3600}
+
+% \HWNUMBER
+\newcommand\hwnumber{4}
+
+% \SEMESTER
+\newcommand\semester{Summer 1 2021}
+
+% \PROF
+\newcommand\prof{Altunkaynak}
+
+% \WRITEDAY
+% \today is date of compilation, replace if writing due date rather than write date
+\newcommand\writeday{\today}
+
+
+
+%  ------- %
+% DOCUMENT %
+% -------- %
+\begin{document}
+
+\problem
+\begin{question}
+	Light emitted from a conventional source is said to be \emph{\textbf{incoherent}}. Why???
+\end{question}
+
+When electrons de-excite they emit photons in random directions at random phases. Thus there is no coherence in 
+the direction and phase of the light.
+
+\problem
+\begin{question}
+	Light traveling in a vacuum will experience changes as it enters a different medium. What properties change 
+	and what do not change? Briefly explain.
+\end{question}
+
+The speed and wavelength change, but the frequency remains the same, and by consequence the color is the same. 
+Intensity will also change.
+
+\problem
+\begin{question}
+	Can you perform this Speed Out of Luck lab with a 532 nm green laser, instead of the red laser? Do not answer
+	yes or no.
+\end{question}
+
+Without saying a firm yes or no, technically the lab would work with a different laser, but absorption of light
+depends on wavelength for most materials, so different lasers may be less optimal with certain mediums. For water,
+an ultraviolet laser or infrared laser would be less ideal. With a green laser would arguably be 
+better due to lower absorption.
+
+\problem
+\begin{question}
+	SOL in a sapphire?
+\end{question}
+Index of refraction $n=1.77$. This corresponds to the ratio of the speed of light in vacuum to the speed of
+light in that material. $2.998e8*/1.77=1.693e8$ m/s
+
+\problem
+\begin{question}
+	List and briefly describe the important parts of a fiber optic cable.
+\end{question}
+
+\begin{itemize}
+	\item Jacket/Sheathing just an outside cover
+	\item Kevlar protects the cable and prevents damage while the cable is pulled
+	\item Cladding a reflective cladding that goes around the core and keeps light from stopping
+	\item Core a continuous strand of super thin glass that is roughly the same size as a human hair. 
+		Serves as the medium through which the light moves.
+	\item Boot begins the transition from cable to connector, bends more comfortably to protect the connection.
+	\item Connector plugs in to the equipment.
+	\item Ferrule a protuding portion of a fiber connector, houses the end of the fiber to align it with 
+		another cable.
+\end{itemize}
+
+\problem
+\begin{question}
+	Describe \textbf{\emph{total internal reflection}}.
+\end{question}
+
+This means that light does not leave the medium through some interface, and that it will be completely reflected 
+back inwards. More specifically, this happens which going from a more dense to a less dense medium when the angle
+of incidence is greater than the critical angle.
+
+\problem
+\begin{question}
+	What is the value of the critical angle for total internal reflection in a diamond crystal? 
+\end{question}
+The critical angle is the incident angle at which the refracted angle is 90.
+Assuming the medium the refracted ray is traversing is vacuum, or $n_2=1$, and $n_1=2.3778$.
+$$ \theta_{crit} = arcsin\left(\frac{n_2}{n_1}\right) =  arcsin(1/2.3778) = 24.8\ degrees $$
+
+\problem
+\begin{question}
+	Suppose you are measuring the speed of light in air by splitting a laser beam into two beams that are 
+	traveling different distances and you measure the time delay between the two beams. If you did the 
+	same experiment in a vacuum, what would be the percentage difference in the computed speed of light? 
+\end{question}
+This question is super unclear, but I think it means what's the difference in speed of light in vacuum compared 
+to speed of light in air??? In which case, it's going to be equal to n-1 (since in a vaccuum n is 1), for air that
+is going to give us $0.0293\%$.
+
+\problem
+\begin{question}
+	How much longer than in air would it take for light to pass through a 1.0000 cm diamond?
+\end{question}
+$$ t = \frac{d}{v} $$
+$$ v = \frac{c}{n} $$
+$$ t = \frac{dn}{c} $$
+$$ \Delta t = \frac{d(n_{diamond} - n_{air}}{c} $$
+$$ \Delta t = \frac{1.0000e-2\ m(2.417- 1.000}{2.9979\ m/s} $$
+$$ \Delta t = 0.0047266\ seconds $$
+
+
+
+\end{document}
