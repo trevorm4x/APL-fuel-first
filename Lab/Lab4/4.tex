@@ -45,7 +45,17 @@
 \date{\today}
 
 \begin{abstract}
-	Nothing is here
+	The refractive indices of several materials were evaluated.
+	The refractive index of air was calculated to be 0.99 $\pm$ 0.01,
+	slightly lower than the accepted value of 1.00.
+	The refractive index of glass was calculated to be 1.49$\pm$0.03 
+	in a glass Fiber-Optic cable.
+	The accepted value for the refractive index of glass is 1.52,
+	slightly higher than the calculated value.
+	The refractive index of water was calculated to be 1.34$\pm$ 0.01,
+	slightly higher than the accepted value of 1.33.
+	An "effective" refractive index of a coaxial cable was also 
+	computed to be 1.56$\pm$0.02.
 \end{abstract}
 
 
@@ -276,15 +286,20 @@ PD & Start & End & 10\% & 90\% \\
 \end{tabular}
 \end{table}
 
-
-
-
-
+From table \ref{TD_Cb}, the time delay between PD1 and PD2 with added cable length
+was calculated, with the mean and the standard deviation being taken again as the recorded 
+measurement and uncertainty, at 10.1 $\pm$ 0.2 ns. This value can be directly compared
+to the previous time delay value, as the test setup did not change at all save the cable being 
+replaced. By subtracting the time differences for each reference point without added
+cable length from the same differences for each reference point with added cable length,
+the effect of the cable alone could be isolated. Because of the nature of subtracting
+differences of differences, the uncertainty of this resulting measurement was significantly
+lower than the previous given values. This value was 4.93 $\pm$ 0.06 ns. \\
 
 
 A plot showing both sets of captures, with extra
-cable and without extra cable, is sown in fig. \ref{comparison}. The extra delay due to
-the extra cable length can be seen clearly.
+cable and without extra cable, is shown in fig. \ref{comparison}. The extra delay due to
+the extra cable length can be seen clearly. \\
 
 \begin{figure}[h]
 \includegraphics[width=0.45\textwidth]{./l4_A.png}
@@ -292,38 +307,271 @@ the extra cable length can be seen clearly.
 length cables as well as the inequal length cables, denoted by the suffix ``\_cable".}
 \end{figure}
 
-
-
-
-
-
-\newpage
-
 \begin{equation}
-    \mathlarger{\eta_{PV}}=P_E/P_L
-    \label{eta_PV}
+	\mathlarger{v = \Delta x/\Delta T}
+	\label{vxt}
 \end{equation}
 
-\subsection{Conclusions}
+Eq. \ref{vxt} was used to calculate the speed of the electric signal in the BNC cable, where
+$\Delta x$ is the added distance of cable in meters and $\Delta t$ is the added time delay
+in seconds. This speed was found to be $1.92\pm0.02 \times 10^8\ m/s$. The ``effective" 
+refractive index was calculated using eq. \ref{duh}, where n is the refractive index, c is
+the speed of light in vacuum, and v is the speed of light in a given medium. The effective
+refractive index of the BNC cable was calculated to be 1.56 $\pm$ 0.02. \\
 
-\section{Summary}
+It is clear that if one cable was longer than the other then the time delay would be 
+substantially altered. In the actual test setup, every part of the setup that both
+beams experience is not considered, as it does not factor into the cause of the time
+delay between the beams. This includes the path of the beam before it splits, but
+also the paths of the electric signals from the PD sensors to the oscilloscope. If
+the paths were not the same then this error would completely ruin our ability to
+record accurate data. \\
 
-\begin{widetext}
-\begin{center}
+\begin{equation}
+	\mathlarger{n=c/v}
+	\label{duh}
+\end{equation}
+
+\subsection{Speed of Light in Air}
+
+The speed of light in air was found using the same setup as in the previous section, after 
+removing the extra length BNC cable. The raw output of the oscilloscope for this step is
+shown in fig. \ref{air_osc}. \\
+
+\begin{figure}[h]
+\includegraphics[width=0.45\textwidth]{./BMPs/l4_D_1_a.jpg}
+\caption{\label{air_osc} Oscilloscope readout of the two signals PD1 (yellow) and PD2
+	(blue) for the two paths in air. }
+\end{figure}
+
+Because of the importance of precisely measuring peak times,
+some high frequency noise was filtered out with a simple square-cutoff low-pass filter,
+and cubic spline interpolation was used to increase measuring precision of the wave 
+features. This spline interpolation is justified by the fact that the oscilloscope is
+averaging 512 waves in this single observation, improving measurement precision when
+projecting curves between points. The processed signal, with all peaks besides the
+first ones removed, is shown in fig. \ref{air_boke}. \\
+
+\begin{figure}[h]
+\includegraphics[width=0.45\textwidth]{../Images/l4_D_a.png}
+\caption{\label{air_boke} Processed signals PD1 and PD2 in air, with calculated
+reference points included.}
+\end{figure}
+
+The values for the time shifts with respect to each signal reference point is shown in
+Table \ref{TD_D1}. The average and standard deviation of the time shift was found 
+to be 5.32 $\pm$ 0.07 ns. By referencing the setup geometry and using eq. \ref{vxt}, the
+speed of light in air was calculated to be $3.01 \pm 0.04 \times 10^8\ m/s$, and
+by using eq. \ref{duh} the corresponding refractive index was found to be 0.99 $\pm$ 0.01.
+The accepted value of 1.0003 is therefore within the uncertainty. This uncertainty
+mostly comes from measuring distances with a measuring tape, lining up the markings
+on the tape with laser pulses that are below it, however some error also comes from
+the length of the nanosecond pulse and the difference in signal shapes between PD1 and PD2. \\
+
 \begin{table}[h]
 \renewcommand{\arraystretch}{1.35}
 \setlength{\tabcolsep}{10pt}
-\caption{\label{}Measured and accepted values of the speed of light and refractive index of various materials.}
+\caption{\label{TD_D1}Time values of the first nanosecond peaks for equal length BNC cables}
 \begin{tabular}{|c|c|c|c|c|}
 %\hline
 \toprule
-Apparatus &  $\eta$ (\%) & Accepted $\eta$ value & Refs. & Deviation \\
+PD & Start & End & 10\% & 90\% \\
+\# & (ns)& (ns)& (ns)& (ns)\\
 \colrule
-Photovoltaic Cell &  $15 \pm 2$ & $17 \pm 2.5$ & \cite{Solar Cell} & $0\sigma$  \\
+1 &    0.0 &  2.47 &  0.67 &  2.02 \\
 \colrule
-Elecrolyzer &  $87 \pm 6$ & 80 & \cite{Electrolyzer} & $2\sigma$  \\
+2 &    5.4 &  7.79 &  5.97 &  7.27 \\
+\hline
+\botrule
+\end{tabular}
+\end{table}
+
+
+
+
+\subsection{Speed of Light in Glass}
+
+The speed of light in glass was found using the same setup as in the previous section,
+but the PD2 mount was replaced with a holder for a FO cable, and this FO cable, measured
+at 2065.5 $\pm$ 0.5 m was plugged directly into PD2, such that a length of glass cable
+was added to the previous setup. The raw output of the oscilloscope for this step is shown in fig. 
+\ref{glass_osc}. \\
+
+\begin{figure}[h]
+\includegraphics[width=0.45\textwidth]{./BMPs/l4_D_2_a.jpg}
+\caption{\label{glass_osc} Oscilloscope readout of the two signals PD1 (yellow) and PD2
+	(blue) for the two paths in glass. }
+\end{figure}
+
+The same pre-processing as in the previous step was used again.
+The processed signal, with all peaks besides the
+first ones removed, is shown in fig. \ref{glass_boke}. \\
+
+\begin{figure}[h]
+\includegraphics[width=0.45\textwidth]{../Images/l4_D_b.png}
+\caption{\label{glass_boke} Processed signals PD1 and PD2 in glass, with calculated
+	reference points included.}
+\end{figure}
+
+The values for the time shifts with respect to each signal reference point is shown in
+Table \ref{TD_D2}. The average and standard deviation of the time shift was found 
+to be 15.6 $\pm$ 0.2 ns. In order to account for just the effect of the glass, the previous
+value for the time-shift due to air in the prior step was simply subtracted from this one,
+giving a 10.3 $\pm$ 0.2 ns time shift due to the FO cable. 
+By using the equation for velocity \ref{vxt}, the speed of light in glass was calculated
+to be $2.01 \pm 0.03 \times 10^8\ m/s$, and
+by using eq. \ref{duh} the corresponding refractive index was found to be 1.49 $\pm$ 0.03.\\
+
+\begin{table}[h]
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{10pt}
+\caption{\label{TD_D2}Time values of the first nanosecond peaks with an extra FO cable inserted into PD2}
+\begin{tabular}{|c|c|c|c|c|}
+%\hline
+\toprule
+PD & Start & End & 10\% & 90\% \\
+\# & (ns)& (ns)& (ns)& (ns)\\
 \colrule
-Hydrogen Fuel Cell &  $49 \pm 5$ & 60 & \cite{Fuel Cell} & $-3\sigma$  \\
+1 &   0.00 &   2.59 &   0.76 &   2.12 \\
+\colrule
+2 &  15.81 &  18.06 &  16.30 &  17.60 \\
+\hline
+\botrule
+\end{tabular}
+\end{table}
+
+The accepted value of 1.52 is therefore within the uncertainty. Again, this uncertainty
+mostly comes from measuring distances with a measuring tape, lining up the markings
+on the tape with laser pulses that are below it, however some error also comes from
+the length of the nanosecond pulse and the difference in signal shapes between PD1 
+and PD2. \\
+
+\subsection{Speed of Light in Water}
+
+The speed of light in water was found using the same setup as in the previous section,
+Speed of Light in Air, by placing a clear plastic tube full of water, measuring 
+614.0 $\pm$ 0.05 mm, in the PD2 beam path such that the beam would pass through it twice.
+Specifically, the tube was placed along paths 2 and 3 in the fig \ref{setup}. Special
+care was taken when originally setting up the first experiment to make sure that the
+beam traveling along path 2 was 5mm away from the location where path 3 is incident
+on M2, specifically for this phase of the test, and as such no measurements were
+retaken here.  The raw output of the oscilloscope for this step is shown in fig. 
+\ref{water_osc}. \\
+
+\begin{figure}[h]
+\includegraphics[width=0.45\textwidth]{./BMPs/l4_D_3_a.jpg}
+\caption{\label{water_osc} Oscilloscope readout of the two signals PD1 (yellow) and PD2
+	(blue) for the two paths in water. }
+\end{figure}
+
+The same pre-processing as in the previous step was used again.
+The processed signal, with all peaks besides the
+first ones removed, is shown in fig. \ref{water_boke}. \\
+
+\begin{figure}[h]
+\includegraphics[width=0.45\textwidth]{../Images/l4_D_c.png}
+\caption{\label{water_boke} Processed signals PD1 and PD2 in water, with calculated
+	reference points included.}
+\end{figure}
+
+The values for the time shifts with respect to each signal reference point is shown in
+Table \ref{TD_D3}. The calculation of the time-of-flight of light through water in this
+test setup is more complex than in the other phases of this experiment because in this
+case, water \emph{replaces} air along a portion of the path length for PD2. We can
+assume that because the speed of light is constant, we can subtract out the length
+the light traveled through air in our water measurement by finding the proportion
+of the time-shift in air that is due to the length other than that covered by the water
+tube, as shown in eq. \ref{TD_Air3}. 
+
+\begin{equation} 
+t_{air delay} = \frac{L_2+L_3+L_4+L_5 - 2L_{water}}{v_{air}}
+\label{TD_Air3}
+\end{equation}
+
+Where v$_{air}$ is the speed of light in air calculated in the preceding section, L$_2$ to L$_5$ are the path 
+lengths in Figure \ref{OpticalSetup}, and L$_{water}$ is the length of the water cell which is multiplied by 2 
+since the laser passes through it twice. \\
+
+This value for time-of-flight through the water tube alone was calculated to be 6.72 $\pm$ 0.5 ns. 
+By using the equation for velocity \ref{vxt}, the speed of light in glass was calculated
+to be $2.24 \pm 0.02 \times 10^8\ m/s$, and
+by using eq. \ref{duh} the corresponding refractive index was found to be 1.34 $\pm$ 0.01.\\
+
+\begin{table}[h]
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{10pt}
+\caption{\label{TD_D3}Time values of the first nanosecond peaks when a water-filled optical cell is in the path leading to PD2}
+\begin{tabular}{|c|c|c|c|c|}
+%\hline
+\toprule
+PD & Start & End & 10\% & 90\% \\
+\# & (ns)& (ns)& (ns)& (ns)\\
+\colrule
+1 &    0.0 &  2.55 &  0.71 &  2.07 \\
+\colrule
+2 &    6.8 &  9.25 &  7.44 &  8.75 \\
+\hline
+\botrule
+\end{tabular}
+\end{table}
+
+The accepted value of 1.33 is therefore within the uncertainty. Again, this uncertainty
+mostly comes from measuring distances with a measuring tape, lining up the markings
+on the tape with laser pulses that are below it, however some error also comes from
+the length of the nanosecond pulse and the difference in signal shapes between PD1 
+and PD2. \\
+
+
+
+\section{Summary}
+
+In spite of the several sources of error and imperfect optimizations of the test setup, 
+all of the calculated values matched accepted values within one standard deviation,
+which is quite excellent. The caluclated value for the refractive index of air, 0.99 $\pm$ 0.01
+compares well to the accepted value of 1.0003, forgiving the mortal physics sin of
+suggesting an object is going faster than the speed of light, of course. The calculated
+value for the refractive index of glass, 1.49 $\pm$ 0.03 compares well to the accepted
+value of 1.52. And finally, the calculated value for the refractive index of water,
+1.34 $\pm$ 0.01, compares well to the accepted value of 1.33 \cite{Index}. \\
+
+While these small uncertainties of around 1\% each are quite small, and this can be attributed
+to very careful measurements of distance, a consistent test setup, a high sample-rate
+oscilloscope, and some careful signal processing, there are several methods that could
+be utilized to more precisely measure these refractive indeces. First, a longer time delay 
+between PD1 and PD2 would minimize the relative error of the oscilloscope. Ideally, the
+delay would max out the sampling resolution of 2 microseconds on the Tektronix TDS210,
+which could be achieved by sending a light signal 250x farther than the length of a lab bench,
+perhaps reflecting off a nearby tower. On the other hand, distance measurement could be
+much more accurate by using a micrometer instead of a tape measure. Finally, an even shorter
+pulse generator would simplify signal processing and reduce the widths of the peaks that
+are compared to calculate a time shift. \\
+
+Finally, it is quite interesting to compare the propogation of electric field through
+a cable to the propogation of light though a medium. Our calculated effective refractive
+index of the BNC cable, 1.56 $\pm$ 0.02, demonstrates that current is not mediated by
+electrons bumping into each other, or the flow of electrons down a wire, but rather
+by the nearly-fast-as-light (through some mediums) propogation of an electric field 
+through a wire. We can see that the BNC cable was a comparable speed to the FO cable,
+but it is of course important to note that there are other advantages of FO cable
+besides the exact speed of the communication. 
+
+
+\begin{widetext}
+\begin{center}
+\begin{table}
+\renewcommand{\arraystretch}{1.35}
+\setlength{\tabcolsep}{10pt}
+\caption{\label{Summary}Measured and accepted values of the speed of light and refractive index of various materials.}
+\begin{tabular}{|c|c|c|c|c|c|}
+%\hline
+\toprule
+Material & $v$ (m/s) & $n$ & Accepted $n$ value & Refs. & Deviation \\
+\colrule
+Air & 3.01$\pm$0.04 $\times$ 10$^8$  & 0.99 $\pm$ 0.01 & n=1.00 & \cite{Index} & -1 \sigma \\
+\colrule
+Glass & 2.01$\pm$0.03 $\times$ 10$^8$  & 1.49$\pm$0.03 & $n = 1.52$ & \cite{Index} & -1 $\sigma$ \\
+\colrule
+Water & 2.24$\pm$0.02 $\times$ 10$^8$  & 1.34$\pm$ 0.01 & $n=1.33$ & \cite{Index} & -1 $\sigma$  \\
 %\hline
 \botrule
 \end{tabular}
@@ -333,29 +581,24 @@ Hydrogen Fuel Cell &  $49 \pm 5$ & 60 & \cite{Fuel Cell} & $-3\sigma$  \\
 
 
 
-
-
 \begin{thebibliography}{9}
 %
-\bibitem{HHV} 
-Wikipedia, Heat of Combustion: \\
-\href{https://en.wikipedia.org/wiki/Heat_of_combustion}{https://www.wikepedia.com}
-%
-\bibitem{Solar Cell} 
-Energysage, Most Efficient Solar Panels\\
-\href{https://news.energysage.com/what-are-the-most-efficient-solar-panels-on-the-market/#:~:text=How%20efficient%20are%20solar%20panels,are%20not%20above%2020%25%20efficiency.}{https://www.energysage.com/}
-%
-\bibitem{Electrolyzer} 
-Carbon Commentary, Hydrogen made by Electolysis\\
-\href{https://www.carboncommentary.com/blog/2017/7/5/hydrogen-made-by-the-electrolysis-of-water-is-now-cost-competitive-and-gives-us-another-building-block-for-the-low-carbon-economy}{https://www.carboncommentary.com}
+\bibitem{SOL_History} 
+American Physical Society, Speed of Light History \\
+\href{https://www.aps.org/publications/apsnews/201007/physicshistory.cfm}{https://www.aps.org}
 %
 
-%
-\bibitem{Fuel Cell} 
-Energy.gov, Fuel Cell Fact Sheet\\
-\href{https://www.energy.gov/sites/prod/files/2015/11/f27/fcto_fuel_cells_fact_sheet.pdf}{https://www.energy.gov}
+\bibitem{Index} 
+BYJU's Educational, Refractive Index \\
+\href{https://byjus.com/physics/refractive-index/}{https://byjus.com}
+
+\bibitem{nvsl} 
+Wikipedia, Refractive Index \\
+\href{https://en.wikipedia.org/wiki/Refractive_index}{https://en.wikipedia.org/wiki/RefractiveIndex}
 
 \end{thebibliography}
+\end{document}
+%
 
 
 \end{document}
