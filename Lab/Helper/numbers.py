@@ -1,6 +1,7 @@
 from uncertainties import ufloat
 from scipy.signal import find_peaks, peak_widths
 import numpy as np
+import pandas as pd
 
 def get_leading_figure(unc):
     sci = str(unc).split('e')
@@ -51,13 +52,26 @@ def moving_avg_filter(a, bucket = 30):
              for i in range(len(a))]
     return newby
 
-def peak(a, n_peaks, prominence=1000, height=1, threshold=100, indeces=[]):
+def peak(a,
+        n_peaks,
+        prominence=1000,
+        height=1,
+        threshold=100,
+        distance=None,
+        indeces=[]):
+
     peaks, peak_dict = find_peaks(
-            a, prominence=prominence, height=height, threshold=threshold)
+            a,
+            prominence=prominence,
+            height=height,
+            distance=distance,
+            threshold=threshold)
+
     heights = peak_dict['peak_heights'].tolist()
     peaks = peaks.tolist()
     inds = []
     bigheights = []
+
     for i in range(n_peaks):
         if len(heights):
             peak_num = heights.index(max(heights))
@@ -108,3 +122,54 @@ def rising_edge(sig, times, first = False):
     print("10-90 time", rising_time)
 
     return [[start_ind, end_ind], [ten_ind, ninety_ind]]
+
+def fft(signal, t, order=None, magnitude=True, shift=True, window="hamming"):
+    """
+    Performs an fft and returns coefs and freqs
+    """
+    n = signal.shape[0]
+    if order is not None:
+        if signal.shape[0] < 2**order:
+            n = 2**order
+
+    sample_rate = t[1] - t[0]
+
+    if window=='hamming':
+        signal = signal.copy() * np.hamming(signal.shape[0])
+
+    coefs = np.fft.fft(signal, n)
+    freqs = np.fft.fftfreq(n, sample_rate)
+
+    if magnitude:
+        coefs = np.abs(coefs)
+
+    if shift:
+        coefs = np.fft.fftshift(coefs)
+        freqs = np.fft.fftshift(freqs)
+
+    return coefs, freqs
+
+def read_scope_csv(path, n_sigs = 1, skiprows=0):
+    ret = []
+    for n in range(n_sigs):
+        config = pd.read_csv(
+                path,
+                header=None,
+                usecols=[1+6*n, 2+6*n],
+                skiprows=skiprows
+                ).loc[:2]
+        config = [record_length, sample_interval, trigger_point] = [
+            [float(val), unit] for val, unit in zip(config[1+6*n], config[2+6*n])]
+        config= {
+            'record_length': record_length,
+            'sample_interval': sample_interval,
+            'trigger_point': trigger_point
+        }
+        display(config)
+        data = pd.read_csv(
+                path, header = None, usecols=[3+6*n, 4+6*n], skiprows=skiprows
+                ).loc[:2047]
+        data.columns = ['ts', 'mV']
+        ret.append([data, config])
+    
+    return ret
