@@ -4,6 +4,8 @@ import pandas as pd
 
 from Helper.numbers import get_leading_figure
 
+from Helper.record import Measurement
+
 def add_fit(x, y, degree, ax, xlabel, leg):
     if xlabel.startswith('$'):
         xlabel = xlabel[1:-1]
@@ -63,7 +65,7 @@ def my_graph(x, y, xscale, yscale, xlabel, ylabel, name, interp, fit = None):
     if fit:
         return fits
 
-def style(fig):
+def style(fig, x_label=None, y_label=None):
     """ 
     help style bokeh plots 
     """
@@ -74,4 +76,6 @@ def style(fig):
     fig.toolbar_location = None
     fig.xgrid.visible = False
     fig.ygrid.visible = False
+    fig.xaxis.axis_label = x_label
+    fig.yaxis.axis_label = y_label
     return fig

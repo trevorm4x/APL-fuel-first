@@ -1,0 +1,236 @@
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+% -------- %
+% SECTIONS %
+% -------- %
+\newcounter{problemnumber}\setcounter{problemnumber}{1}
+\titlespacing\section{0pt}{10pt}{0pt}   % Spacing between Problems
+\titlespacing\subsection{0pt}{5pt}{0pt} % Spacing between Parts
+\newcommand{\problem}[1][-1]{
+    \setcounter{partnumber}{1}
+    \ifnum#1>0
+        \setcounter{problemnumber}{#1}
+    \fi
+    \section*{Problem \arabic{problemnumber}}
+    \stepcounter{problemnumber}
+}
+
+\newcounter{partnumber}\setcounter{partnumber}{1}
+\newcommand{\ppart}[1][-1]{
+    \ifnum#1>0
+        \setcounter{partnumber}{#1}
+    \fi
+    \subsection*{Part \parttype{partnumber}}
+    \stepcounter{partnumber}
+}
+
+\newenvironment{question}{
+    \color{gray}\itshape
+    \vspace{5pt}
+    \begin{tabular}{|p{0.97\linewidth}}
+}{
+    \end{tabular}\\[5pt]
+}
+
+
+
+% ------------- %
+% HEADER/FOOTER %
+% ------------- %
+\setlength\parindent{0pt}
+\setlength\headheight{30pt}
+\headsep=0.25in
+\pagestyle{fancy}
+\lhead{\ifthenelse{\thepage=1}
+    {\textbf{Trevor Smith} \\ \textbf{\writeday}}
+}
+\chead{\ifthenelse{\thepage=1}
+    {\textbf{\huge{HOMEWORK \hwnumber}}}
+    {\textbf{\large{HOMEWORK \hwnumber}}}
+}
+\rhead{\ifthenelse{\thepage=1}
+    {\textbf{{\course}} \\ \textbf{Professor {\prof}}}
+}
+\cfoot{\thepage}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+
+
+% ---------- %
+% PARAMETERS %
+% ---------- %
+% \PARTTYPE:
+% \Alph   := "Part A, Part B,  ..."
+% \alph   := "Part a, Part b,  ..."
+% \arabic := "Part 1, Part 2,  ..."
+% \Roman  := "Part I, Part II, ..."
+\newcommand\parttype{\Roman}
+
+% \COURSE:
+\newcommand\course{PHYS 3600}
+
+% \HWNUMBER
+\newcommand\hwnumber{5}
+
+% \SEMESTER
+\newcommand\semester{Summer 1 2021}
+
+% \PROF
+\newcommand\prof{Altunkaynak}
+
+% \WRITEDAY
+% \today is date of compilation, replace if writing due date rather than write date
+\newcommand\writeday{\today}
+
+
+
+%  ------- %
+% DOCUMENT %
+% -------- %
+\begin{document}
+
+\problem
+\begin{question}
+	Why use a hamming filter?
+\end{question}
+
+The hamming window mitigates any discontinuities at the beginning or end of the signal, while not changing the frequencies present in the signal in any meaningful way (other than removing spectral leakage). This is why ``filter" is misleading as a name for the hamming window and is not typically used in the real world to describe the window, as filters typically operate in the frequency domain. \\
+
+Discontinuities in a time-domain signal are problematic because these sharp angles will appear as spectral leakage, or a massive number of harmonics, in the frequency domain that are not an intended feature in the frequency analysis.
+
+\problem
+\begin{question}
+	How does the number of recorded cycles relate to the FFT linewidth?\\
+	How does the number of cycles (N) relate to the full frequency range?
+\end{question}
+Because total recorded time is probably being held constant in this scenario,
+this would simply increase the nyqist frequency. FFT linewidth would not be affected unless the sample rate before the increase was lower than the frequency of the wave. \\
+
+If the number of samples in a given time increases, the sample rate will increase, so it's proportional to N.
+
+\problem
+\begin{question}
+	How does the total recorded time (T) relate to the FFT linewidth?\\
+	How does the total recorded time (T) relate to the full frequency range?
+\end{question}
+Assuming the signal is periodic??? If not, the linewidth is the same. If it's continuous, then longer observatiods reduces frequency uncertaintyd, or the linewidth is proportional to 1/T.\\
+
+If the number of cycles is held constant and recorded time increases, that means the sample rate must be decreasing, so sample rate is proportional to 1/T. 
+
+\problem
+\begin{question}
+	What is meant by undersampling?
+\end{question}
+
+Undersampling essentially refers to measuring a signal of a certain frequency with a sample rate that is less than 2x that frequency. However, it is also a technique for hacking the nyquist frequency and measuring a signal even though you're really just aliasing to lower frequencies. The way this works is something along the lines of making sure that all of your signal, which you ideally know beforehand, falls between a certain even number/2 and odd number/2 multiple of your nyquist frequency. This allows you to measure the aliased signal in the frequency domain you have access to without noise, if there is no other noise in those ranges between 0 and your actual signal.
+
+\problem
+\begin{question}
+	By what factor does acoustic intensity change for a 3db change in output level?
+\end{question}
+1/2 or 2 (depending on if the change is down or up), since $10^{.3}$ is about 2.
+
+\problem
+\begin{question}
+	Describe the phenomenon of acoustic beats as longitudinal pressure waves
+\end{question}
+
+Acoustic beats are the result of two waves of slightly different frequency constructively and destructively interfering with each other. One way to think about why this happens is to think about two such waves interacting on a fixed point. If the waves started at the same time, they would be in sync. However, the phase of one changes slightly faster than the phase of the other, and as such the point where both waves are in sync moves away from the point we're looking at. This is to say that the waves become less in sync at the point we are looking at. At a certain point the waves will be exactly out of sync, and we will here nothing at all from either wave. This oscillation between the constructive and destructive interference results in what is referred to in acoustics as beats.
+
+\problem
+\begin{question}
+	What is the ratio of two frequencies that are 3 octaves apart?
+\end{question}
+
+$$f_2 = 2^3f_1=8f_1 $$
+$$ \frac{f_1}{f_2} = 1/8 $$
+
+\problem
+\begin{question}
+	Calculate the velocity o fsound in a gase in which the waves of wavelength 50cm and 50.5 cm produce 6 beats per second.
+\end{question}
+
+Given that
+$ v = f\lambda $ \\
+$ \lambda_1=50 cm $ \\
+$ \lambda_2=50.5 cm $ \\
+$ \Delta f=6 Hz $ \\
+$$ v = 50 \cdot f_1 = 50.5 \cdot (f_1-6) $$
+$ f_1 = \frac{6}{1-50/50.5} = 606 Hz $\\
+$ f_2 = 606-6 = 600\ Hz $ \\
+$$ v = f_1\lambda_1 = 50\ cm \cdot 606\ Hz = 303000 cm/s = 303 m/s $$
+
+
+\problem
+\begin{question}
+	Consider a string of length L stretched between two supports that is plucked like a guitar string. For the first four harmonics, what are the wavelengths in terms of string length L?
+\end{question}
+
+$ \lambda_n = \frac{2L}{n} $\\
+For n = 2, 3, 4, 5, $\lambda$ = L, 2L/3, L/2, 2L/5.
+
+\problem
+\begin{question}
+	Two vilin strings are tuned to the same frequency, 294 Hz. The tension in one string is then decreased by 2.5\%. What would be the beat frequency  when the two strings are played together?
+\end{question}
+
+$ F_T = \mu \lambda^2f^2 $ describes tension. We can assume the linear density of the string $\mu$ is constant, and we can assume that the same note is held, i.e. $\lambda$ is also constant.\\
+
+$ F_1 = Cf_1^2 $ \\
+$ F_2 = Cf_2^2 $ \\
+
+Relating these equations,
+$$ \frac{F_2}{F_1} = \frac{C}{C} \left(\frac{f_2}{f_1}\right)^2 $$
+$$ 97.5 = \left(\frac{f_2}{294}\right)^2 $$
+$f_1 = 290.3\ Hz$. The beat frequency will then be the difference between the
+two frequencies, which is 3.7 Hz.
+
+\problem
+\begin{question}
+	A tight guitar string has a frequency of 540 Hz as its third harmonic. What will be its fundamental frequency if it is fingered at a length of only 70\% of its original length?
+\end{question}
+
+Fundamental frequency:
+$$ f_1 = \frac{f_3}{3} = 540/3 = 180\ Hz $$
+
+$$ v = f\lambda \rightarrow f = \frac{v}{2L} $$
+
+$$ f_1' = \frac{v}{2(.7L)} $$
+$$ 180\ Hz = \frac{v}{2L} $$
+$$ \frac{f_1'}{180\ Hz} = \frac{1}{.7} $$
+The frequency of the note played will be 257.1 Hz.
+
+\problem
+\begin{question}
+	Consider standing waves in two tubes of length L. One tube is open at both ends (open tube) and one tube is closed at one end (closed tube).
+	\begin{enumerate}[label=\alph*.]
+		\item What is the criteria for the wave amplitude at a closed end?
+		\item What is the criteria for the wave amplitude at an open end?
+		\item What is the fundamental wavelength of the open tube?
+		\item What is the fundamental wavelength of the closed tube?
+		\item Which tube gives only odd harmonics?
+	\end{enumerate}
+\end{question}
+
+\begin{enumerate}[label=\alph*.]
+	\item Amplitude must be zero at the closed end, it is a node.
+	\item Amplitude must be maximum at open ends, it is an antinode.
+	\item $\lambda = 2L$
+	\item $\lambda = 4L$
+	\item Closed tubes give only odd harmonics because it always has a node and antinode at opposite ends.
+\end{enumerate}
+
+
+
+
+
+
+
+\end{document}
