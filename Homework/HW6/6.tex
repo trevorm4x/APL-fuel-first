@@ -1,0 +1,250 @@
+\documentclass{article}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+% -------- %
+% SECTIONS %
+% -------- %
+\newcounter{problemnumber}\setcounter{problemnumber}{1}
+\titlespacing\section{0pt}{10pt}{0pt}   % Spacing between Problems
+\titlespacing\subsection{0pt}{5pt}{0pt} % Spacing between Parts
+\newcommand{\problem}[1][-1]{
+    \setcounter{partnumber}{1}
+    \ifnum#1>0
+        \setcounter{problemnumber}{#1}
+    \fi
+    \section*{Problem \arabic{problemnumber}}
+    \stepcounter{problemnumber}
+}
+
+\newcounter{partnumber}\setcounter{partnumber}{1}
+\newcommand{\ppart}[1][-1]{
+    \ifnum#1>0
+        \setcounter{partnumber}{#1}
+    \fi
+    \subsection*{Part \parttype{partnumber}}
+    \stepcounter{partnumber}
+}
+
+\newenvironment{question}{
+    \color{gray}\itshape
+    \vspace{5pt}
+    \begin{tabular}{|p{0.97\linewidth}}
+}{
+    \end{tabular}\\[5pt]
+}
+
+
+
+% ------------- %
+% HEADER/FOOTER %
+% ------------- %
+\setlength\parindent{0pt}
+\setlength\headheight{30pt}
+\headsep=0.25in
+\pagestyle{fancy}
+\lhead{\ifthenelse{\thepage=1}
+    {\textbf{Trevor Smith} \\ \textbf{\writeday}}
+}
+\chead{\ifthenelse{\thepage=1}
+    {\textbf{\huge{HOMEWORK \hwnumber}}}
+    {\textbf{\large{HOMEWORK \hwnumber}}}
+}
+\rhead{\ifthenelse{\thepage=1}
+    {\textbf{{\course}} \\ \textbf{Professor {\prof}}}
+}
+\cfoot{\thepage}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+
+
+% ---------- %
+% PARAMETERS %
+% ---------- %
+% \PARTTYPE:
+% \Alph   := "Part A, Part B,  ..."
+% \alph   := "Part a, Part b,  ..."
+% \arabic := "Part 1, Part 2,  ..."
+% \Roman  := "Part I, Part II, ..."
+\newcommand\parttype{\Roman}
+
+% \COURSE:
+\newcommand\course{PHYS 3600}
+
+% \HWNUMBER
+\newcommand\hwnumber{6}
+
+% \SEMESTER
+\newcommand\semester{Summer 1 2021}
+
+% \PROF
+\newcommand\prof{Altunkaynak}
+
+% \WRITEDAY
+% \today is date of compilation, replace if writing due date rather than write date
+\newcommand\writeday{\today}
+
+
+
+%  ------- %
+% DOCUMENT %
+% -------- %
+\begin{document}
+
+\problem
+\begin{question}
+	Write down the potential difference across the capacitor.
+\end{question}
+$$ V_c = \frac{Q}{C} $$
+$$ V_c(t) = \frac{q(t)}{C} $$
+
+\problem
+\begin{question}
+	Write down the potential difference across the resistor.
+\end{question}
+$$ V = -IR $$
+$$ V_R(t) = I(t)R $$
+
+\problem
+\begin{question}
+	Write down the voltage required to overcome the back e.m.f.
+	$V_L(t)$ in the inductance (L).
+\end{question}
+$$ V_L(t) = -L\frac{dI}{dt} $$
+
+\problem
+\begin{question}
+	Show that 
+	$$ L \frac{dI}{dt} + RI + \frac{q}{C} = 0 $$
+\end{question}
+When the switch is in the right position, we can just use Kirchoff's loop
+rule for the single loop.
+$$ \frac{q(t)}{c} - (-I(t)R) - (-L \frac{dI}{dH}) = 0 $$
+$$ L\frac{dI}{dt} + I(t)R + \frac{q(t)}{C} = 0 $$
+$$ L \frac{dI}{dt} + RI + \frac{q}{C} = 0 $$
+
+\problem
+\begin{question}
+	Show that blank
+\end{question}
+
+$$ L \frac{dI}{dt} + RI + \frac{q}{C} = 0 $$
+$$ \frac{dI}{dt} + \frac{R}{L}I + \frac{q}{LC} = 0 $$
+$$ 2k = \frac{R}{L} $$
+$$ \omega^2 = \frac{1}{LC} $$
+$$ \frac{dI}{dt} + 2k I + \omega^2 q = 0 $$
+$$ I = \frac{dq}{dt} $$
+$$ \frac{d^2q}{dt^2} + 2k\frac{dq}{dt} + \omega^2 q = 0 $$
+
+\problem
+\begin{question}
+	Using the trivial(?) solution $q = Qe^{\alpha t}$, solve for $\alpha$.
+\end{question}
+
+$$q = Qe^{\alpha t}$$
+$$\frac{dq}{dt} = \alpha Qe^{\alpha t}$$
+$$\frac{d^2q}{dt^2} = \alpha^2 Qe^{\alpha t}$$
+
+$$ \alpha^2 Qe^{\alpha t} + 2k\alpha Qe^{\alpha t} + \omega^2 Qe^{\alpha t} = 0 $$
+$$ Qe^{\alpha t}\left(\alpha^2  + 2k\alpha + \omega^2 \right) = 0 $$
+Solve quadratic
+$$ \alpha = \frac{-2k \pm \sqrt{4k^2-4\omega^2}}{2} $$
+
+\problem
+\begin{question}
+	Derive the equation for R that determines the onset of critical damping.
+\end{question}
+Zooming in on that quadratic,
+$ \sqrt{4k^2-4\omega^2} $ must be 0. 
+$$ 4k^2-4\omega^2 = 0 $$
+$$ k^2 = \omega^2  $$
+$$ \frac{R^2}{L^2} = \frac{1}{LC}  $$
+$$ \frac{R^2}{L} = \frac{1}{C}  $$
+$$ R^2 = \sqrt{\frac{L}{C}}  $$
+
+\problem
+\begin{question}
+	For L=0.50 H and C=1.80e-9F, what is the maximum value for resistance
+	so that the circuit is underdamped.
+\end{question}
+
+$ \sqrt{4k^2-4\omega^2} $ must be $<$ 0. 
+$$ k^2-\omega^2<0 $$
+$$ R^2 < \sqrt{\frac{L}{C}}  $$
+$$ R^2 < \sqrt{\frac{0.50}{1.8 \mu F}}  $$
+R must be les than 527 $\Omega$
+
+\problem
+\begin{question}
+	If the resistance in an underdamped LRC oscillator is decreased by 
+	a factor of two, from $R=2R_0$ to $R=R_0$, how much does the oscillation
+	amplitude change over a time $t=2L/R_0$?
+\end{question}
+General solution is 
+$$ y = e^{\gamma t} \left[ C_1cos(\beta t) + C_2 sin(\beta t) \right] $$
+Solution to characteristic equation
+$$ r = \gamma \pm \beta i $$
+$$\alpha = -k \pm \sqrt{k^2-\omega^2} $$
+$$ \sqrt{k^2-\omega^2} = \beta i $$
+$$ \gamma = -k $$
+$$ y = e^{-k t} \left[ C_1cos(\beta t) + C_2 sin(\beta t) \right] $$
+$$ y = e^{-\frac{R}{2L} t} $$
+\problem
+\begin{question}
+	If the resistance in an underdamped LRC oscillator is decreased by 
+	a factor of two, from $R=2R_0$ to $R=R_0$, how much does the oscillation
+	amplitude change over a time $t=2L/R_0$?
+\end{question}
+General solution is 
+$$ y = e^{\gamma t} \left[ C_1cos(\beta t) + C_2 sin(\beta t) \right] $$
+Solution to characteristic equation
+$$ r = \gamma \pm \beta i $$
+$$\alpha = -k \pm \sqrt{k^2-\omega^2} $$
+$$ \sqrt{k^2-\omega^2} = \beta i $$
+$$ \gamma = -k $$
+$$ y = e^{-k t} \left[ C_1cos(\beta t) + C_2 sin(\beta t) \right] $$
+$$ y = e^{-\frac{R}{2L} t} $$
+
+$$ R = 2R_0 \rightarrow y = e^{-\frac{2R_0}{2L} t} =
+e^{-\frac{2R_0}{2L} \frac{2L}{R_0}} = e^{-2} A $$
+$$ R = R_0 \rightarrow y = e^{-\frac{R_0}{2L} t} =
+e^{-\frac{R_0}{2L} \frac{2L}{R_0}} = e^{-1} A $$
+Oscillation amplitude decreases by a factor of 1/e
+
+\problem
+\begin{question}
+	Discuss how the ``beating" effect in a coupled oscillator system
+	is different than the beating of acoustic waves.
+\end{question}
+
+In the case of acoustic waves interacting to create a beat, we're just
+talking about two waves summing constructively and destructively. In the
+case of CEO, the coupled oscillator system is not described by the addition
+of two constant waves, but rather by a second order differential equation.
+Rather than two waves being created by entirely different sources, in CEO
+the capacitor and inductors are actually causing time delays in the flow
+of current as it flows around the circuit and is slowly dissipated by the
+resistor. If the system were not operating in a normal mode, these ``beats"
+would not be apparent.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
