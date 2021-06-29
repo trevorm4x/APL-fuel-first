@@ -1,0 +1,276 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LaTeX poster template
+% Created by Nathaniel Johnston
+% August 2009
+% http://www.nathanieljohnston.com/2009/08/latex-poster-template/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[final]{beamer}
+\usepackage[scale=1.24]{beamerposter}
+\usepackage{graphicx}			% allows us to import images
+\usepackage{oz}
+
+%-----------------------------------------------------------
+% Define the column width and poster size
+% To set effective sepwid, onecolwid and twocolwid values, first choose how many columns you want and how much separation you want between columns
+% The separation I chose is 0.024 and I want 4 columns
+% Then set onecolwid to be (1-(4+1)*0.024)/4 = 0.22
+% Set twocolwid to be 2*onecolwid + sepwid = 0.464
+%-----------------------------------------------------------
+
+\newlength{\sepwid}
+\newlength{\onecolwid}
+\newlength{\twocolwid}
+\newlength{\threecolwid}
+\setlength{\paperwidth}{48in}
+\setlength{\paperheight}{36in}
+\setlength{\sepwid}{0.024\paperwidth}
+\setlength{\onecolwid}{0.22\paperwidth}
+\setlength{\twocolwid}{0.464\paperwidth}
+\setlength{\threecolwid}{0.708\paperwidth}
+\setlength{\topmargin}{-0.5in}
+\usetheme{confposter}
+\usepackage{exscale}
+
+%-----------------------------------------------------------
+% The next part fixes a problem with figure numbering. Thanks Nishan!
+% When including a figure in your poster, be sure that the commands are typed in the following order:
+% \begin{figure}
+% \includegraphics[...]{...}
+% \caption{...}
+% \end{figure}
+% That is, put the \caption after the \includegraphics
+%-----------------------------------------------------------
+
+\usecaptiontemplate{
+\small
+\structure{\insertcaptionname~\insertcaptionnumber:}
+\insertcaption}
+
+%-----------------------------------------------------------
+% Define colours (see beamerthemeconfposter.sty to change these colour definitions)
+%-----------------------------------------------------------
+
+\setbeamercolor{block title}{fg=ngreen,bg=white}
+\setbeamercolor{block body}{fg=black,bg=white}
+\setbeamercolor{block alerted title}{fg=white,bg=dblue!70}
+\setbeamercolor{block alerted body}{fg=black,bg=dblue!10}
+
+%-----------------------------------------------------------
+% Name and authors of poster/paper/research
+%-----------------------------------------------------------
+
+\title{Coupled Electric Oscillators}
+\author{Trevor Smith}
+\institute{Physics Department of Northeastern University}
+
+%-----------------------------------------------------------
+% Start the poster itself
+%-----------------------------------------------------------
+
+\begin{document}
+\begin{frame}[t]
+  \begin{columns}[t]					% the [t] option aligns the column's content at the top
+
+    \begin{column}{\sepwid}\end{column}
+    \begin{column}{\onecolwid}					  % create a three-column-wide column and then we will split it up later
+	    \begin{block}{Abstract}
+
+		    First we analyze a single LRC circuit.
+		    By curve fitting voltage responses for the circuit,
+		    the A and B-inductor
+		    decay natural frequencies were calculated as 14587.05$\pm$
+		    0.03  rad/sec and 14578.44$\pm$ 0.03 rad/s, and decay constants of
+		    649.9$\pm$ 0.1 s−1 and 651.3$\pm$ 0.1 s−1.  From these values the
+		    inductances were calculated to be 0.100±0.003 H for both of the inductors.
+		    When the A and B circuits were coupled via a coupling capacitor, each
+		    circuit produced a signal with a beat frequency of 170 $\pm$ 1 Hz.
+		    By using equations modeling a coupled LRC circuit, the coupling
+		    capacitance was calculated to be 4.1 $\pm$ 0.1 nF, which is one standard
+		    deviation away from its measured value of 3.9 $\pm$ 0.1 nF.
+
+	    \end{block}
+      \begin{block}{Introduction}
+	Three essential components used in circuits are resistors, 
+	capacitors, and inductors. These components operate in distinct ways, which can be
+	seen by the way we use inductance, resistance, and capacitance to calculate voltage.
+
+	\vskip1ex
+
+	\begin{alertblock}{Equations for Voltage}
+		\begin{semiverbatim}
+		$$ V = L \cdot \frac{d^2q}{dt^2} \fcmp\ \  V = R \cdot \frac{dq}{dt} \fcmp\ \  V = \frac{1}{C} \cdot q $$
+		\end{semiverbatim}
+	\end{alertblock}
+
+	\vskip0ex
+	Where V is voltage, L is inductance, R is resistance, C is capacitance, and q is 
+	charge. In other words, capacitors do work proportional to amount of charge buildup, 
+	resistors do work proportional to the flow of charge or current, and inductors do 
+	work proporional to the inflection of charge, or the change in current. \\
+	\vskip1ex
+
+	\vskip1ex
+	An LRC circuit combines these three components in series, and produces damped
+	oscillation in response to changing voltage, via the above equations and
+	Kirchoff's loop rule.
+	We can understand why by relating these oscillations analagous to a spring-mass system.
+	\vskip1ex
+
+	\end{block}
+
+
+    \end{column}
+
+    \begin{column}{\sepwid}\end{column}			% empty spacer column
+    \begin{column}{\onecolwid}
+    \begin{block}{Introduction, cont.}
+
+	\begin{figure}[h]
+	\includegraphics[width=0.3\textwidth]{../Images/l6_LRC.png}
+	\caption{\label{figA} An LRC Circuit}
+	\end{figure}
+
+	\begin{alertblock}{Differential Equations}
+		\begin{semiverbatim}
+		$$ L \cdot \frac{d^2q}{dt^2} + R \cdot \frac{dq}{dt} + \frac{1}{C} \cdot q = 0 $$
+		$$ m \cdot \frac{d^2x}{dt^2} + \beta \cdot \frac{dx}{dt} + kx = 0 $$
+		\end{semiverbatim}
+	\end{alertblock}
+
+	These circuits grow exponentially in complexity when two are copuled 
+	together. In the second phase of this lab we investigate the behavior
+	of two coupled LRC circuits, operating with a 90 degree phase difference.
+
+      \end{block}
+
+      \begin{block}{Apparatus}
+% List equipment components (manufacturer, model
+% numbers and brief specifications). 
+
+The apparatus consisted of the following.
+\begin{itemize}
+	\item Coupled electronic oscillator circuit box
+	\item Fixed capacitor, variable capacitor
+	\item Two large inductor coils, labelled 'A' and 'B'
+	\item Oscilloscope, Tektronix TDS210 
+	\item Digital Multimeter, Extech EX430A
+\end{itemize}
+
+\end{block}
+
+\begin{block}{Measure Inductance}
+
+	In this phase of the lab we measure the basic parameters of our system, described
+	in \ref{setup}, including $L_A$, $L_B$, $R_L_A$, $R_L_B$, full decay natural 
+	frequency $\omega_0$, damping constant $\gamma$, time constant $\tau$, 
+	quality factor $Q$ and the standard capacitor. These values, save for the capacitance,
+	are calculated by analyzing the voltage oscillations of the circuit. Values for $R_L_A$
+	and $R_L_B$ are also measured with an ohmmeter, and the capacitance is measured
+	with a digital multimeter (DMM). \\
+
+\end{block}
+
+\end{column}
+  
+
+    \begin{column}{\sepwid}\end{column}			% empty spacer column
+    \begin{column}{\onecolwid}					  % create a three-column-wide column and then we will split it up later
+
+\begin{block}{Measure Inductance, cont.}
+
+	\begin{figure}[h]
+	\includegraphics[width=0.9\textwidth]{../Images/l6_setup.png}
+	\caption{\label{setup} Test setup for the coupled electric oscillators.}
+	\end{figure}
+
+	The fit parameters will correspond to this solution of an LRC circuit.
+
+	\begin{equation} 
+	q(t) = q_{0}e^{-\gamma t/2}cos(\omega_0t)
+	\label{LRC Oscillation}
+	\end{equation}
+
+	\vskip1ex
+
+	\begin{figure}[h]
+	\includegraphics[width=\textwidth]{../Images/l6_channel_A_full_fit.png}
+	\caption{\label{single_period} LRC Circuit response and fit, using A-inductor.
+	The sign of the frequency is not relevant in this case. }
+	\end{figure}
+		
+
+\end{block}
+
+      \begin{block}{Altering Column Spans}
+        You can make columns that span multiple other columns relatively easily. Lengths are defined in the template that make columns look normal-ish if you want to use a four-column layout like this poster. If you want to use a different number of columns, you will have to modify those lengths accordingly at the top of the poster.tex file.
+        
+        In particular, near the top of the TeX file you will see lines that look like:
+        \begin{semiverbatim}
+          \hskip1ex\\setlength\{\\sepwid\}\{0.024\\paperwidth\}
+          
+          \hskip1ex\\setlength\{\\onecolwid\}\{0.22\\paperwidth\}
+          
+          \hskip1ex\\setlength\{\\twocolwid\}\{0.464\\paperwidth\}
+          
+          \hskip1ex\\setlength\{\\threecolwid\}\{0.708\\paperwidth\}
+        \end{semiverbatim}
+        
+        Set ``sepwid'' to be some small length somewhere near 0.025 (this is the space between columns). Then if $n$ is the number of columns you want, you should set
+        \begin{align*}
+          \text{onecolwid} & = \frac{1}{n}(1-(n+1)\times\text{sepwid}), \\
+          \text{twocolwid} & = 2\times\text{onecolwid} + \text{sepwid}, \\
+          \text{threecolwid} & = 3\times\text{onecolwid} + 2\times\text{sepwid}.
+        \end{align*}
+      \end{block}
+
+      \begin{columns}[t,totalwidth=\threecolwid]	% split up that three-column-wide column
+        \begin{column}{\onecolwid}
+          \setbeamercolor{block title}{fg=red,bg=white}%frame color
+          \setbeamercolor{block body}{fg=black,bg=white}%body color
+          \begin{block}{Block Colours}
+            For the standard blocks there are two colours; one for the title and one for the block body:\\
+            \begin{semiverbatim}
+              {\color{red}\\setbeamercolor}\{block title\}\newline \{fg=red,bg=white\}
+            \end{semiverbatim}
+            \begin{semiverbatim}
+              {\color{red}\\setbeamercolor}\{block  body\}\newline \{fg=black,bg=white\}
+            \end{semiverbatim}
+            The \emph{fg} colour sets the text colour and \emph{bg} sets the background colour.
+            For the normal blocks it makes no sense to use a background colour other than white. You \emph{can} change it, but it will look weird!
+          \end{block}
+        \end{column}
+        \begin{column}{\onecolwid}
+          \setbeamercolor{block alerted title}{fg=black,bg=norange}	% frame color
+          \setbeamercolor{block alerted body}{fg=black,bg=white}		% body color
+          \begin{alertblock}{Alert Block Colours}
+            You can similarly modify the colours for alert blocks (but try not to overdo it):\\
+            \begin{semiverbatim}
+              {\color{red}\\setbeamercolor}\{block title\}\newline \{fg=black,bg=norange\}
+            \end{semiverbatim}
+            \begin{semiverbatim}
+              {\color{red}\\setbeamercolor}\{block  body\}\newline \{fg=black,bg=white\}
+            \end{semiverbatim}
+          \end{alertblock}        
+        \end{column}
+        \begin{column}{\onecolwid}
+          \begin{block}{References}
+            Some references and a graphic to show you how it's done:
+            
+		        \small{\begin{thebibliography}{99}
+		        \bibitem{KLPL06} D.~W. Kribs, R. Laflamme, D. Poulin, M. Lesosky, Quantum Inf. \& Comp. \textbf{6} (2006), 383-399.
+		        \bibitem{zanardi97} P. Zanardi, M. Rasetti, Phys. Rev. Lett. \textbf{79},  3306 (1997).
+		        \end{thebibliography}}
+			      \vspace{0.75in}
+			      \begin{center}
+			        \includegraphics[width=5in]{canada.jpg}
+			      \end{center}
+		      \end{block}
+        \end{column}
+      \end{columns}
+      \vskip2.5ex
+    \end{column}
+  \begin{column}{\sepwid}\end{column}			% empty spacer column
+ \end{columns}
+\end{frame}
+\end{document}
